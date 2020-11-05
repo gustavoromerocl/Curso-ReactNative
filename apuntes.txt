@@ -1,0 +1,2 @@
+npx react-native start -- Inicia Metro
+npx react-native run-android -- Iniciar app en el emulador de androir studio
