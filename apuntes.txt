@@ -1,2 +1,12 @@
 npx react-native start -- Inicia Metro
 npx react-native run-android -- Iniciar app en el emulador de androir studio
+
+
+UX libraries
+- Native Base
+- React Native Elements
+
+Testing 
+
+- Enzyme
+- React testing library
