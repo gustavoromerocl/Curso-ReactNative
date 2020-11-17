@@ -10,3 +10,11 @@ Testing
 
 - Enzyme
 - React testing library
+
+
+State of components
+
+-Mounting
+-update
+-unmounting
+-Error handling 
