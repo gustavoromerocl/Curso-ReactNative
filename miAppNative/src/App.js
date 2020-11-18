@@ -24,31 +24,21 @@ import {
   ImageBackground,
 } from 'react-native';
 import Counter from './components/Counter';
+import Dropdown from './components/Dropdown';
 import InputList from './components/InputList';
 import RadioButton from './components/RadioButton';
 
 const {height, width} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
-  image:{
-    borderRadius: 100,
-    width: width * 0.4,
-    height: 200,
-  },
-  title:{
-    color: "black",
-    fontSize: 40,
-    textAlign: "center",
-    color: "white",
-    fontWeight: "bold",
-  },
-  container:{
-    backgroundColor: '#2ecc71',
-    padding: 20,
-    margin: 5,
-    borderRadius: 10,
-    borderColor: 'orange',
+  dropdownItem: {
+    height: 50,
+    backgroundColor: "#95a5a6",
+    borderColor: "black",
     borderWidth: 1,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    paddingLeft: 20,
   }
 });
 
@@ -61,9 +51,20 @@ const App: () => React$Node = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView >
-          <Counter/>
-          <InputList/>
-          <RadioButton/>
+          <Dropdown>
+            <View style={styles.dropdownItem}>
+              <Text>Chile</Text>
+            </View>
+            <View style={styles.dropdownItem}>
+              <Text>Perú</Text>
+            </View>
+            <View style={styles.dropdownItem}>
+              <Text>Bolivia</Text>
+            </View>
+            <View style={styles.dropdownItem}>
+              <Text>Argentina</Text>
+            </View>
+          </Dropdown>
         </ScrollView>
       </SafeAreaView>
     </>
