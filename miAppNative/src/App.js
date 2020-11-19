@@ -24,7 +24,9 @@ import {
   ImageBackground,
 } from 'react-native';
 import Counter from './components/Counter';
+import DishList from './components/DishExample/DishList';
 import Dropdown from './components/Dropdown';
+import HorizontalScroll from './components/HorizontalScroll';
 import InputList from './components/InputList';
 import RadioButton from './components/RadioButton';
 
@@ -39,6 +41,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     paddingLeft: 20,
+  },
+  safeArea: {
+    flex: 1,
   }
 });
 
@@ -49,23 +54,22 @@ const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView >
+      <SafeAreaView style={styles.safeArea}>
           <Dropdown>
-            <View style={styles.dropdownItem}>
-              <Text>Chile</Text>
-            </View>
-            <View style={styles.dropdownItem}>
-              <Text>Perú</Text>
-            </View>
-            <View style={styles.dropdownItem}>
-              <Text>Bolivia</Text>
-            </View>
-            <View style={styles.dropdownItem}>
-              <Text>Argentina</Text>
-            </View>
+              <View style={styles.dropdownItem}>
+                <Text>Chile</Text>
+              </View>
+              <View style={styles.dropdownItem}>
+                <Text>Peru</Text>
+              </View>
+              <View style={styles.dropdownItem}>
+                <Text>Bolivia</Text>
+              </View>
+              <View style={styles.dropdownItem}>
+                <Text>Argentina</Text>
+              </View>
           </Dropdown>
-        </ScrollView>
+          <DishList/>
       </SafeAreaView>
     </>
   );

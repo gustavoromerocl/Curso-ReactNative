@@ -41,7 +41,7 @@ export default class Dropdown extends Component {
         const objeto = {
             item: {
                 item2:{
-                    item3: "hola",
+                    item3: "hola anidado",
                 }
             }
         }

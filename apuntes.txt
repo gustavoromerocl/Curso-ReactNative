@@ -18,3 +18,9 @@ State of components
 -update
 -unmounting
 -Error handling 
+
+
+Clase 4
+Manejo de props
+Manejo de estados padre e hijo
+Props por defecto
