@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View, Animated } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Rating from './Rating';
 
@@ -54,20 +54,35 @@ export default class MovieCard extends Component {
 
         Icon.loadFont();
         this.state = {
-            validImage: true,
-            starRating: 1,
+          validImage: true,
+          starRating: 1,
+          fadeAnimation: new Animated.Value(0),
         };
+    }
+
+    componentDidMount = () => {
+      this.animateMovieCard()
     }
 
     starRatingSet = (index) => this.setState({starRating: index});
 
     invalid = () => this.setState({validImage: false});
 
+    animateMovieCard = () => {
+      const { fadeAnimation } = this.state;
+
+      Animated.timing(fadeAnimation, {
+        toValue: 1,
+        duration: 2000,
+        useNativeDriver: true,
+      }).start()
+    }
+
     render() {
         const { posterUrl, title, year, imdbRating } = this.props;
-        const { validImage, starRating } = this.state;
+        const { validImage, starRating, fadeAnimation } = this.state;
         return (
-            <View style={styles.container}>
+            <Animated.View style={[styles.container, {opacity: fadeAnimation}]}>
                 <Image 
                     style={styles.image} 
                     source={validImage ? {uri: posterUrl} : require('../assets/no_image_available.jpg')}
@@ -79,14 +94,15 @@ export default class MovieCard extends Component {
                     <Text style={[styles.description, styles.textColor]}>{year}</Text>
                     <Rating 
                       star 
-                      starCount={10}
+                      starCount={5}
                       starRating={starRating}
-                      ratingPress={this.starRatingSet}/>
+                      ratingPress={this.starRatingSet
+                      }/>
                     <Text style={[styles.description, styles.textColor, styles.rating]}>{imdbRating}</Text>
-                    <Rating heart/>
+                    
                 </View>
-
-            </View>
+                <Rating heart/>     
+            </Animated.View>
         )
     }
 }
