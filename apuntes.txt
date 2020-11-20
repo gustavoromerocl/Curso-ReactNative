@@ -24,3 +24,8 @@ Clase 4
 Manejo de props
 Manejo de estados padre e hijo
 Props por defecto
+
+
+Clase 5
+Componentes de clases
+Alcances
