@@ -57,6 +57,7 @@ export default class MovieCard extends Component {
           validImage: true,
           starRating: 1,
           fadeAnimation: new Animated.Value(0),
+          like: false,
         };
     }
 
@@ -78,9 +79,16 @@ export default class MovieCard extends Component {
       }).start()
     }
 
+    //recibe el state actual para modificarlo
+    //toggleLike = () => this.setState( (states) => ({like: !states.like}) )
+    //Forma corta
+    toggleLike = () => {
+      this.setState( ({like}) => ({like: !like}) )
+    }
+
     render() {
         const { posterUrl, title, year, imdbRating } = this.props;
-        const { validImage, starRating, fadeAnimation } = this.state;
+        const { validImage, starRating, fadeAnimation, like } = this.state;
         return (
             <Animated.View style={[styles.container, {opacity: fadeAnimation}]}>
                 <Image 
@@ -101,7 +109,9 @@ export default class MovieCard extends Component {
                     <Text style={[styles.description, styles.textColor, styles.rating]}>{imdbRating}</Text>
                     
                 </View>
-                <Rating heart/>     
+                <View style={styles.heart}>
+                  <Rating heart like={like} ratingPress={this.toggleLike}/>     
+                </View>
             </Animated.View>
         )
     }

@@ -1,3 +1,4 @@
+npx react-native init {nombre de la app}
 npx react-native start -- Inicia Metro
 npx react-native run-android -- Iniciar app en el emulador de androir studio
 
@@ -5,6 +6,7 @@ npx react-native run-android -- Iniciar app en el emulador de androir studio
 UX libraries
 - Native Base
 - React Native Elements
+
 
 Testing 
 
@@ -19,6 +21,9 @@ State of components
 -unmounting
 -Error handling 
 
+Iconos - React Native Vector Icons
+npm install --save react-native-vector-icons 
+
 
 Clase 4
 Manejo de props
@@ -29,3 +34,6 @@ Props por defecto
 Clase 5
 Componentes de clases
 Alcances
+
+
+No entendi que si hay que trabajar ocn la pelicula hay que pasarla como state y no como props

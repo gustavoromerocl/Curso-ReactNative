@@ -23,10 +23,10 @@ export default class Rating extends Component {
     }
 
     render() {
-        const { star, starCount, ratingPress, starRating, heart } = this.props;
+        const { star, starCount, ratingPress, starRating, heart, like } = this.props;
 
         if(star){
-
+            //Metodo map para iterar y traer el componente segun el star count
             const arrayStar = Array
                 .from({length: starCount})
                 .map((_,index) => (
@@ -50,8 +50,8 @@ export default class Rating extends Component {
 
         if(heart){
             return(
-                <TouchableOpacity style={styles.heart}>
-                    <Icon name="heart" size={30} color={"#e74c3c"}/>
+                <TouchableOpacity style={styles.heart} onPress={() => ratingPress()}>
+                    <Icon name="heart" size={30} color={like ? "#e74c3c" : "#95a5a6"}/>
                 </TouchableOpacity>
             )
         }
