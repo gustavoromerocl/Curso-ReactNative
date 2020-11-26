@@ -3,8 +3,17 @@ import PropTypes from 'prop-types'
 import Header from '../components/Header';
 import MovieList from '../components/MovieList';
 
+//Home creado como componente funcional
+const Home = ({movies}) => (
+    <>
+    <Header title={'CARTELERA'}></Header>
+    <MovieList movies={movies}/>
+    </>
+)
 
+export default Home;
 
+/*
 export default class Home extends PureComponent{
     constructor(props){
         super(props)
@@ -13,13 +22,11 @@ export default class Home extends PureComponent{
     render() {
         const {movies} = this.props;
         return (
-            <>
-                <Header title={'CARTELERA'}></Header>
-                <MovieList movies={movies}/>
-            </>
+
         )
     }
 }
+*/
 
 Home.propTypes = {
     movies: PropTypes.array,

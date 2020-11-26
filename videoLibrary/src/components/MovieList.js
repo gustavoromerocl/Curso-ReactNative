@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { FlatList, StyleSheet, TouchableOpacity, View, Modal, Text, SafeAreaView } from 'react-native'
 import MovieCard from './MovieCard';
 import FilterButton from './FilterButton';
-import Filters from './filters';
+import Filters from './Filters';
+import FilterButtons from './FilterButtons';
 
 const styles = StyleSheet.create({
     container: {
@@ -22,10 +23,13 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         borderRadius: 75,
         padding: 15,
-    }
+    },
+
   });
 
-export default class MovieList extends Component {
+export default class MovieList extends PureComponent {
+    flatListRef = null;
+
     constructor(props){
         super(props)
 
@@ -33,8 +37,8 @@ export default class MovieList extends Component {
             movies: props.movies,
             modalActive: false,
             moviesGenres: [],
-        }
-    }
+        };
+    };
 
     componentDidMount = () => {
         this.setGenresData();
@@ -45,8 +49,15 @@ export default class MovieList extends Component {
         const filteredMovies = movies.filter((movie) =>
           movie.genres.includes(genre),
         );
-        this.setState({movies: filteredMovies, modalActive: false});
-      };
+        this.setState(
+            {movies: filteredMovies, modalActive: false},
+            this.movieListScrollToTop,
+        );
+    };
+
+    //metodo que utiliza la propiedad ref para volver la lista al index 0 cada vez que se llame
+    movieListScrollToTop = () =>
+        this.flatListRef.scrollToOffset({animated: true, offset: 0});
 
     //Iteracion sobre el array movies, mediante el metodo reduce se itera sobre cada elemento y se guarda el genero en un nuevo array
     setGenresData = () =>{
@@ -62,9 +73,12 @@ export default class MovieList extends Component {
         this.setState({moviesGenres: [ ... genresSet]})
     }
 
+
     clearFilters = () => {
         const {movies} = this.props;
-        this.setState({movies, modalActive: false});
+        this.setState({movies, modalActive: false},
+        this.movieListScrollToTop,
+        );
     };
 
     toggleModal = () => this.setState( ({modalActive}) => ({modalActive: !modalActive})  )
@@ -74,19 +88,22 @@ export default class MovieList extends Component {
         return (
             <>
             <FlatList
+                ref={(movieListFlatListRef) => 
+                    (this.flatListRef =  movieListFlatListRef)
+                }
                 style={styles.container}
-                    data={movies}
-                    keyExtractor={({poster}) => poster}
-                    showsHorizontalScrollIndicator={false}
-                    renderItem={({item : {posterurl, title, year, imdbRating} }) => (
-                        <MovieCard
-                            posterUrl={posterurl}
-                            title={title}
-                            year={year}
-                            imdbRating={imdbRating}
-                        />
-                    )}
-                />
+                data={movies}
+                keyExtractor={({poster}) => poster}
+                showsHorizontalScrollIndicator={false}
+                renderItem={({item : {posterurl, title, year, imdbRating} }) => (
+                    <MovieCard
+                        posterUrl={posterurl}
+                        title={title}
+                        year={year}
+                        imdbRating={imdbRating}
+                    />
+                )}
+            />
                 <View style={styles.filterButton}>
                     <FilterButton onPress={this.toggleModal}/>
                 </View>
@@ -94,31 +111,16 @@ export default class MovieList extends Component {
                     visible={modalActive}
                     animationType="slide"
                 >
-                    <SafeAreaView>
+                <SafeAreaView>
                     <Filters 
                         moviesGenres={moviesGenres}
                         movieGenreOnPress={this.applyFilter}
                         />
-                    <View>
-                        <TouchableOpacity
-                            onPress={this.toggleModal}
-                            style={styles.closeModal}
-                        >
-                            <Text style={{color: "white"}}>X</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={this.clearFilters}
-                            style={{
-                                padding: 10,
-                                backgroundColor: '#e74c3c',
-                                justifyContent: 'center',
-                                alignSelf: 'center',
-                            }}>
-                            <Text style={{color: 'white'}}>Limpiar Filtro</Text>
-                        </TouchableOpacity>
-
-                    </View>
-                    </SafeAreaView>
+                    <FilterButtons
+                        toggleModal={this.toggleModal}
+                        clearFilters={this.clearFilters}
+                    />
+                </SafeAreaView>
                 </Modal>
             </>
         )

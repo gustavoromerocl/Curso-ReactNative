@@ -35,5 +35,10 @@ Clase 5
 Componentes de clases
 Alcances
 
+Clase 6
+Componentes funcionales
+Beneficios de los componentes funcionales
 
+Dudas
 No entendi que si hay que trabajar ocn la pelicula hay que pasarla como state y no como props
+Array con los 3 ´puntos

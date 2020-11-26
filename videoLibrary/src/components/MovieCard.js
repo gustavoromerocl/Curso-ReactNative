@@ -3,19 +3,14 @@ import PropTypes from 'prop-types'
 import { Image, StyleSheet, Text, View, Animated } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import Rating from './Rating';
+import MovieImage from './MovieImage';
+import MovieFullScreenImage from './MovieFullScreenImage';
 
 const styles = StyleSheet.create({
     container: {
         borderRadius: 15,
         backgroundColor: '#ecf0f1',
         marginBottom: 20,
-      },
-      image: {
-        borderTopLeftRadius: 15,
-        borderTopRightRadius: 15,
-        height: 300,
-        width: '100%',
-        backgroundColor: '#34495e',
       },
       textColor: {
         color: '#34495e',
@@ -58,8 +53,11 @@ export default class MovieCard extends Component {
           starRating: 1,
           fadeAnimation: new Animated.Value(0),
           like: false,
+          fullScreenImage: false,
         };
     }
+
+    toggleFullScreenImage = () => this.setState( ({fullScreenImage}) => ({fullScreenImage: !fullScreenImage}))
 
     componentDidMount = () => {
       this.animateMovieCard()
@@ -88,14 +86,23 @@ export default class MovieCard extends Component {
 
     render() {
         const { posterUrl, title, year, imdbRating } = this.props;
-        const { validImage, starRating, fadeAnimation, like } = this.state;
+        const { validImage, starRating, fadeAnimation, like, fullScreenImage } = this.state;
         return (
             <Animated.View style={[styles.container, {opacity: fadeAnimation}]}>
-                <Image 
-                    style={styles.image} 
-                    source={validImage ? {uri: posterUrl} : require('../assets/no_image_available.jpg')}
-                    resizeMode="cover"
-                    onError={this.invalid}
+              {
+                fullScreenImage && (
+                  <MovieFullScreenImage
+                    onPress={this.toggleFullScreenImage}
+                    posterUrl={posterUrl}
+                  />
+                )
+              }
+
+                <MovieImage
+                  validImage={ validImage }
+                  posterUrl={ posterUrl }
+                  onError={this.invalid}
+                  imageOnLongPress={this.toggleFullScreenImage}
                 />
                 <Text style={[styles.name, styles.textColor]}>{title}</Text>
                 <View style={styles.subtitle}>
