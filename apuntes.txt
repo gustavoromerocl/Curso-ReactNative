@@ -24,6 +24,15 @@ State of components
 Iconos - React Native Vector Icons
 npm install --save react-native-vector-icons 
 
+Axios 
+npm install axios
+
+React-native-debugger
+https://github.com/jhen0409/react-native-debugger
+
+SVG charts - libreria de graficos
+npm install react-native-svg
+npm install react-native-svg-charts
 
 Clase 4
 Manejo de props
@@ -39,6 +48,24 @@ Clase 6
 Componentes funcionales
 Beneficios de los componentes funcionales
 
+Clase 7
+Consumo de API REST
+Axios
+
+
 Dudas
-No entendi que si hay que trabajar ocn la pelicula hay que pasarla como state y no como props
+No entendi que si hay que trabajar con la pelicula hay que pasarla como state y no como props
 Array con los 3 ´puntos
+
+Utilidades 
+
+react-native-dropdown-picker
+https://www.npmjs.com/package/react-native-dropdown-picker
+
+react-native asyn storage
+https://react-native-async-storage.github.io/async-storage/docs/install
+
+Fuentes
+
+https://makeappicon.com/ pagina para buscar iconos 
+https://api.covid19api.com
