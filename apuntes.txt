@@ -34,6 +34,20 @@ SVG charts - libreria de graficos
 npm install react-native-svg
 npm install react-native-svg-charts
 
+*****************************
+React Navigation 
+
+dependencias 
+react-native-gesture-handler
+react-native-reanimated
+react-native-screens
+react-native-safe-area-context
+@react-native-community/masked-view
+
+npm install @react-navigation/native
+
+*****************************
+
 Clase 4
 Manejo de props
 Manejo de estados padre e hijo
@@ -52,6 +66,11 @@ Clase 7
 Consumo de API REST
 Axios
 
+Clase 8
+Navegacion entre Componentes
+React Navigation
+Uso de Tabs y Stacks
+
 
 Dudas
 No entendi que si hay que trabajar con la pelicula hay que pasarla como state y no como props
@@ -59,13 +78,17 @@ Array con los 3 ´puntos
 
 Utilidades 
 
+React navigation
+https://reactnavigation.org/
+
 react-native-dropdown-picker
 https://www.npmjs.com/package/react-native-dropdown-picker
 
-react-native asyn storage
+react-native async storage 
 https://react-native-async-storage.github.io/async-storage/docs/install
 
 Fuentes
 
 https://makeappicon.com/ pagina para buscar iconos 
 https://api.covid19api.com
+
