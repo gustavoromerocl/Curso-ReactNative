@@ -1,0 +1,50 @@
+FLEX
+
+JUSTIFY-CONTENT
+flex-start: Alinea elementos al lado izquierdo del contenedor.
+flex-end: Alinea elementos al lado derecho del contenedor.
+center: Alinea elementos en el centro del contenedor.
+space-between: Muestra elementos con la misma distancia entre ellos.
+space-around: Muestra elementos con la misma separación alrededor de ellos.
+
+ALIGN-ITEMS
+flex-start: Alinea elementos a la parte superior del contenedor.
+flex-end: Alinea elementos a la parte inferior del contenedor.
+center: Alinea elementos en el centro (verticalmente hablando) del contenedor.
+baseline: Muestra elementos en la línea base del contenedor
+stretch: Elementos se estiran para ajustarse al contenedor.
+
+FLEX-DIRECTION
+row: Elementos son colocados en la misma dirección del texto.
+row-reverse: Elementos son colocados en la dirección opuesta al texto.
+column: Elementos se colocan de arriba hacia abajo.
+column-reverse: Elementos se colocan de abajo hacia arriba.
+
+Nota que cuando estableces la dirección a una fila invertida o columna, el inicio y el final también se invierten.
+Nota que cuando es una columna, justify-content cambia a vertical y align-items a horizontal.
+
+(Order y Align-self se aplican al elemento que se requiere mover
+ORDER
+Se considera al portador de la clase o id como index 0, pudiento mocerse al numero asignado en el row, sea positivo o negativo.
+
+ALIGN-SELF
+Mueve el elemento que posee la clase o el id con la propiedades de align-items
+
+FLEX-WRAP
+nowrap: Cada elemento se ajusta en una sola línea.
+wrap: los elementos se envuelven alrededor de líneas adicionales.
+wrap-reverse: Los elementos se envuelven alrededor de líneas adicionales en reversa.
+
+FLEX-FLOW
+Mezcla flex-direction y flex wrap
+EJ: flex-flow: wrap column
+
+ALIGN-CONTENT
+flex-start: Las líneas se posicionan en la parte superior del contenedor.
+flex-end: Las líneas se posicionan en la parte inferior del contenedor.
+center: Las líneas se posicionan en el centro (verticalmente hablando) del contenedor.
+space-between: Las líneas se muestran con la misma distancia entre ellas.
+space-around: Las líneas se muestran con la misma separación alrededor de ellas.
+stretch: Las líneas se estiran para ajustarse al contenedor.
+Esto puede ser confuso, pero align-content determina el espacio entre las líneas, mientras que align-items determina como los elementos en su conjunto están alineados dentro del contenedor. Cuando hay solo una línea, align-content no tiene efecto.
+
