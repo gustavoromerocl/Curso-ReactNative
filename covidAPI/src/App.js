@@ -16,12 +16,12 @@ import {
   StatusBar,
 } from 'react-native';
 import colors from './components/config/colors';
+import RootNavigation from './routes/RootNavigation';
 import Home from './screen/Home';
 
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.black,
     flex: 1,
   }
 });
@@ -31,9 +31,7 @@ const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-        <SafeAreaView style={styles.container}>
-          <Home/>
-      </SafeAreaView>
+        <RootNavigation/>
     </>
   );
 };

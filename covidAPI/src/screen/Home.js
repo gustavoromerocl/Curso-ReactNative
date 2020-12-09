@@ -10,7 +10,8 @@ import Loading from '../components/commons/Loading'
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 20
+        backgroundColor: colors.black,
+        flex: 1,
     }
   });
 
@@ -55,7 +56,13 @@ export default class Home extends Component {
         this.setState({isLoading: true})
         try{
             //Al clonar el objeto, se puede usar las propiedades de este en la variable que creamos mediante Axios
-            const { status, data } =  await axios.get(`https://api.covid19api.com/country/${selectCountry}`, );
+            //Forma alternativa de hacer la llamada a axios
+            const { status, data } =  await axios({
+                baseURL: 'https://api.covid19api.com',
+                method: 'GET',
+                url: `/country/${selectCountry}`,
+                timeout: 3000,
+            });
             //console.log('arreglo:', response);
             if(status === 200)
                 this.setState({currentData: data})
@@ -96,8 +103,24 @@ export default class Home extends Component {
 
     }
 
+    backupData = async ({country, totalConfirmed, totalRecovery, totalDeaths, totalActive}) => {
+        const response = await axios.post(
+            'https://5f79f3e1e402340016f935ed.mockapi.io/react-native',
+            {
+              datetime: new Date().toISOString(),
+              country,
+              total_confirmed: totalConfirmed,
+              total_recovered: totalRecovery,
+              total_deaths: totalDeaths,
+              total_active: totalActive,
+            },
+        );
+
+        console.log(JSON.stringify(response));
+    }
+
     render() {
-        const {currentData, countries, isLoading} = this.state;
+        const {currentData, countries, isLoading, selectedCountry} = this.state;
 
         //Trae el ultimo registro de las variable indicadas
         const totalConfirmed = this.getLastValue(currentData, 'Confirmed')
@@ -111,7 +134,7 @@ export default class Home extends Component {
         const lineChartDeaths = currentData.map((data) => data.Deaths)
         const lineChartActive = currentData.map((data) => data.Active)
 
-        
+        const {navigation} = this.props;
         //console.log(countries.length);
         //console.log('arreglo:', currentData.length);
         //console.log(totalConfirmed)
@@ -122,15 +145,33 @@ export default class Home extends Component {
                 </Button>
          */
         return (
-            <ScrollView style={styles.container}>
+            <View style={styles.container}>
                 <Text>Covid</Text>
                 <Button 
                     onPress={() => this.fetchData()} 
                     title="LLamar a Axios">
                 </Button>
 
+                <Button 
+                    disabled
+                    onPress={() => navigation.navigate("screens")} 
+                    title="Ir a Screens">
+                </Button>
+
                 <DropDownPicker countries={countries} onSelect={this.selectCountry}/>
 
+                <Button
+                    title="backup data"
+                    onPress={() =>
+                        this.backupData({
+                        country: selectedCountry,
+                        totalConfirmed,
+                        totalActive,
+                        totalDeaths,
+                        totalRecovery,
+                        })
+                    }
+                />
                 <Loading isLoading={isLoading} color={colors.white}>
                     <TotalData 
                         totalConfirmed={totalConfirmed} 
@@ -139,12 +180,23 @@ export default class Home extends Component {
                         totalActives={totalActive} 
                     />
                 </Loading>
+                <Button 
+                //Se pasan los argumentos a el screen en el mismo stack
+                    onPress={() => navigation.navigate(
+                        "Charts", 
+                        {
+                        lineChartConfirmed,
+                        lineChartRecovery,
+                        lineChartDeaths,
+                        lineChartActive,
+                        }
 
-                <LineChartData data={lineChartConfirmed} color={colors.blue} title='Confirmados' />
-                <LineChartData data={lineChartRecovery} color={colors.green} title='Recuperados' />
-                <LineChartData data={lineChartDeaths} color={colors.red} title='Fallecidos' />
-                <LineChartData data={lineChartActive} color={colors.yellow} title='Activos' />
-            </ScrollView>
+                    )} 
+                    title="Ir a Charts">
+                </Button>
+
+
+            </View>
         )
     }
 }
