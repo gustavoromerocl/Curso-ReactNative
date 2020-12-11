@@ -92,3 +92,21 @@ Fuentes
 https://makeappicon.com/ pagina para buscar iconos 
 https://api.covid19api.com
 
+
+
+ANDROID STUDIO EN UBUNTU
+Ejecutar el siguiente comando
+
+chmod 755 android/gradlew
+
+o
+
+sudo chmod -R 777 node-modules 
+sudo chmod -R 777 android 
+export ANDROID_HOME=~/Library/Android/sdk
+
+
+
+
+
+

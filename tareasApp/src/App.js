@@ -18,10 +18,11 @@ import {
 import Tarea1 from './components/commons/Tarea1';
 
 import colors from './config/colors';
+import Home from './screen/Home';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.gray,
+    backgroundColor: colors.black,
     flex: 1,   
   }
 });
@@ -33,7 +34,7 @@ const App: () => React$Node = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
-        <Tarea1 title={"Gustavo Romero"} age={30}/>
+        <Home/>
       </SafeAreaView>
     </>
   );
