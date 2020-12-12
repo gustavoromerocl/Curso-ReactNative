@@ -11,27 +11,22 @@ export default class ShoppingCart extends Component {
 
     render() {
     const {style, selectData} = this.props;
-    console.log(selectData)
+    
+    
     return (
     <View> 
         <FlatList
             style={style}
             data={selectData}
-            keyExtractor={({index}) => index}
-            renderItem={({item:{ title, readyInMinutes, servings, image }}) => (
-                <DishCart
-                    title={title}
-                    readyInMinutes={readyInMinutes} 
-                    servings={servings} 
-                    image={image}
-                />
-            )}
+            keyExtractor={(item) => console.log(item.id)}
+            renderItem={({item : {id}}) => console.log(id)}
             ListEmptyComponent={() => (
                 <View>
                     <Text>No hay items</Text>
                 </View>
             )}
         />
+        
     </View>
     );
   }

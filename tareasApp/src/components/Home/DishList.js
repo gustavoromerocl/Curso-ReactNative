@@ -33,10 +33,8 @@ export default class DishList extends Component {
     selectDishes = (id) => {
         const { dishes, selectedDishes } = this.state
         const cartDish = dishes.filter((dish) => dish.id == id)
-        const newArray = selectedDishes;
-        newArray.push(cartDish)
-        this.setState({selectedDishes: newArray})
-        console.log(selectedDishes)
+        this.setState({selectedDishes: [...selectedDishes, cartDish]})
+        console.log(cartDish)
         Alert.alert(
             "¡Muy Bien!",
             "Agregado al carrito",
@@ -74,9 +72,10 @@ export default class DishList extends Component {
                 <FlatList
                     style={styles.flatListContainer}
                     data={dishes}
-                    keyExtractor={({id}) => id.toString()}
+                    keyExtractor={(item) => item.id.toString()}
                     renderItem={({item:{id, title, readyInMinutes, servings, image }}) => (
                         <DishCard
+                            key={title}
                             title={title}
                             readyInMinutes={readyInMinutes} 
                             servings={servings} 

@@ -46,6 +46,9 @@ react-native-safe-area-context
 
 npm install @react-navigation/native
 
+https://reactnavigation.org/	
+
+
 *****************************
 
 Clase 4
