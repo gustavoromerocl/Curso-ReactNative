@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, Text, View } from 'react-native';
+import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import DishCart from './DishCart';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import colors from '../../config/colors';
+
+const styles = StyleSheet.create({
+    containerButton: {
+        paddingHorizontal:10,
+        marginTop: 20
+    }
+})
 
 export default class ShoppingCart extends Component {
     constructor(props){
@@ -10,23 +19,46 @@ export default class ShoppingCart extends Component {
 
 
     render() {
-    const {style, selectData} = this.props;
-    
+    const {style, selectData, onPress, cleanCart} = this.props;
+    //console.log("SelectedData:",selectData)
     
     return (
     <View> 
         <FlatList
             style={style}
             data={selectData}
-            keyExtractor={(item) => console.log(item.id)}
-            renderItem={({item : {id}}) => console.log(id)}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({item:{id, title, readyInMinutes, servings, image }}) => (
+                <DishCart
+                    key={title}
+                    title={title}
+                    readyInMinutes={readyInMinutes} 
+                    servings={servings} 
+                    image={image}
+                    onPress={() => this.selectDishes(id)}
+                />
+            )}
             ListEmptyComponent={() => (
                 <View>
                     <Text>No hay items</Text>
                 </View>
             )}
         />
-        
+        <View style={styles.containerButton}>
+            <Button
+            onPress={cleanCart}
+            title="Vaciar Carro"
+            color={colors.red}
+            />
+        </View>
+        <View style={styles.containerButton}>
+          <Button
+            onPress={onPress}
+            title="Volver"
+            color={colors.violet}
+          />
+        </View>
+
     </View>
     );
   }

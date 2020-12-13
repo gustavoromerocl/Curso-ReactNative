@@ -45,7 +45,7 @@ const ButtonAlert = () =>
         "¡Muy Bien!",
         "Agregado al carrito",
         [
-            { text: "OK", onPress: () => console.log("OK Pressed"), style: "destructive" }
+            { text: "OK" }
         ],
         { cancelable: false }
     );

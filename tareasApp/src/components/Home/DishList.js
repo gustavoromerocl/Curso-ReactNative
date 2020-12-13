@@ -31,10 +31,10 @@ export default class DishList extends Component {
     toogleModal = () => this.setState(({modalActive}) => ({modalActive: !modalActive}))
     
     selectDishes = (id) => {
-        const { dishes, selectedDishes } = this.state
-        const cartDish = dishes.filter((dish) => dish.id == id)
+        const { dishes, selectedDishes } = this.state   
+        const cartDish = dishes.find((dish) => dish.id == id)
         this.setState({selectedDishes: [...selectedDishes, cartDish]})
-        console.log(cartDish)
+        //console.log(cartDish)
         Alert.alert(
             "¡Muy Bien!",
             "Agregado al carrito",
@@ -93,7 +93,12 @@ export default class DishList extends Component {
                 <Modal
                     visible={modalActive}
                 >
-                    <ShoppingCart selectData={selectedDishes} style={styles.flatListContainer}/>
+                    <ShoppingCart 
+                        selectData={selectedDishes} 
+                        style={styles.flatListContainer} 
+                        onPress={this.toogleModal} clearCart
+                        cleanCart={this.clearCart}
+                    />
                 </Modal>
             </>
         )
