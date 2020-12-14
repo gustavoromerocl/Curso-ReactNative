@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons'
 import Button from '../components/Button';
 import colors from '../config/colors'
 
@@ -26,15 +27,28 @@ const Menu = ({navigation}) => {
 
             </View>
             <Button 
-                onPress={()=>{}}
+                onPress={()=>{navigation.navigate("Menu")}}
                 text="Menu"
             />
             <Button 
-                onPress={()=>{}}
+                onPress={()=>{navigation.navigate('UseState')}}
                 text="useState"
                 icon={
-                <MaterialIcon name="home" color={colors.black} size={20}/>}
+                <MaterialCommunityIcons name="home" color={colors.black} size={20}/>}
             />
+            <Button 
+                onPress={()=>{navigation.navigate('UseCallback')}}
+                text="useCallback"
+                icon={
+                <MaterialIcon name="pets" color={colors.black} size={20}/>}
+            />
+            <Button 
+                onPress={()=>{navigation.navigate('UseMemo')}}
+                text="useMemo"
+                icon={
+                <MaterialCommunityIcons name="gamepad-square" color={colors.black} size={20}/>}
+            />
+
         </View>
     )
 }
