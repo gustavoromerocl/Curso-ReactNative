@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button, ScrollView, View } from 'react-native'
-import LineChartData from '../components/commons/LineChart';
-import colors from '../components/config/colors';
+import { Button, ScrollView} from 'react-native'
+import LineChartData from '../../components/commons/LineChart';
+import colors from '../../components/config/colors';
 
 //Los parametros de entrada se pasan a traves de la propiedad route.params
 const Charts = ({navigation, route: {params:{lineChartConfirmed, lineChartRecovery, lineChartDeaths, lineChartActive}}}) => (

@@ -74,6 +74,14 @@ Navegacion entre Componentes
 React Navigation
 Uso de Tabs y Stacks
 
+Clase 9 - Hooks
+useState
+useCallback
+useMemo
+
+Clase 10 - Hooks
+useEffect
+Como y cuando utilizar useEffect
 
 Dudas
 No entendi que si hay que trabajar con la pelicula hay que pasarla como state y no como props
@@ -100,7 +108,7 @@ https://api.covid19api.com
 ANDROID STUDIO EN UBUNTU
 Ejecutar el siguiente comando
 
-chmod 755 android/gradlew
+sudo chmod 755 android/gradlew
 
 o
 

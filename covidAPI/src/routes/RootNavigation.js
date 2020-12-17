@@ -8,7 +8,7 @@ import HomeTab from './BottomTabStack'
 const RootStack = createStackNavigator();
 const RootNavigation = () =>(
     <NavigationContainer>
-        <RootStack.Navigator>
+        <RootStack.Navigator headerMode="none">
             <RootStack.Screen name="tabs" component={HomeTab}/>
             <RootStack.Screen name="Screen" component={Screen}/>
         </RootStack.Navigator>

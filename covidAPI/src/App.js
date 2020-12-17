@@ -8,30 +8,19 @@
 
 import React from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
   StatusBar,
 } from 'react-native';
-import colors from './components/config/colors';
 import RootNavigation from './routes/RootNavigation';
-import Home from './screen/Home';
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  }
-});
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 
 const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
+      <SafeAreaProvider>
         <RootNavigation/>
+      </SafeAreaProvider>
     </>
   );
 };
