@@ -1,77 +1,64 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import DishCart from './DishCart';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import colors from '../../config/colors';
 
 const styles = StyleSheet.create({
-    containerButton: {
-        paddingHorizontal:10,
-        marginTop: 20
-    }
+    containerButton1: {
+        position: "absolute",
+        bottom: 10,
+        width: '50%',
+        right: 0,
+    },
+    containerButton2: {
+        position: "absolute",
+        bottom: 10,
+        width: '50%',
+        left: 0,
+
+    },
 })
 
-export default class ShoppingCart extends Component {
-    constructor(props){
-        super(props)
-    }
 
+const ShoppingCart = ({selectData, style, onPress, cleanCart}) => {
 
-    render() {
-    const {style, selectData, onPress, cleanCart} = this.props;
-    //console.log("SelectedData:",selectData)
-    
     return (
-    <View> 
-        <FlatList
-            style={style}
-            data={selectData}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({item:{id, title, readyInMinutes, servings, image }}) => (
-                <DishCart
-                    key={title}
-                    title={title}
-                    readyInMinutes={readyInMinutes} 
-                    servings={servings} 
-                    image={image}
-                    onPress={() => this.selectDishes(id)}
-                />
-            )}
-            ListEmptyComponent={() => (
-                <View>
-                    <Text>No hay items</Text>
-                </View>
-            )}
-        />
-        <View style={styles.containerButton}>
-            <Button
-            onPress={cleanCart}
-            title="Vaciar Carro"
-            color={colors.red}
+        <View> 
+            <FlatList
+                style={style}
+                data={selectData}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({item:{id, title, readyInMinutes, servings, image }}) => (
+                    <DishCart
+                        title={title}
+                        readyInMinutes={readyInMinutes} 
+                        servings={servings} 
+                        image={image}
+                        onPress={() => this.selectDishes(id)}
+                    />
+                )}
+                ListEmptyComponent={() => (
+                    <View>
+                        <Text>No hay items</Text>
+                    </View>
+                )}
             />
+                <View style={styles.containerButton1}>
+                    <Button
+                    onPress={cleanCart}
+                    title="Vaciar Carro"
+                    color={colors.red}
+                    />
+                </View>
+                <View style={styles.containerButton2}>
+                <Button
+                    onPress={onPress}
+                    title="Volver"
+                    color={colors.violet}
+                />
+                </View>
+    
         </View>
-        <View style={styles.containerButton}>
-          <Button
-            onPress={onPress}
-            title="Volver"
-            color={colors.violet}
-          />
-        </View>
-
-    </View>
-    );
-  }
+        );
 }
-
-ShoppingCart.propTypes = {
-    style: PropTypes.shape({}),
-    selectData: PropTypes.array,
-    onPress: PropTypes.func,
-}
-
-ShoppingCart.defaultProps = {
-    style: {},
-    selectData: [],
-    onPress: () => {},
-}
+export default ShoppingCart;

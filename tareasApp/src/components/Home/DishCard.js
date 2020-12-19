@@ -40,38 +40,26 @@ const AddToCart = ({onPress}) => (
     </View>  
 );
 
-const ButtonAlert = () =>
-    Alert.alert(
-        "¡Muy Bien!",
-        "Agregado al carrito",
-        [
-            { text: "OK" }
-        ],
-        { cancelable: false }
-    );
-
-export default class DishCard extends Component {
-
-    render() {
-        const { title, readyInMinutes, servings, image, onPress} = this.props
-        return (
-            <View style={styles.container}>
-                <View style={styles.imageContainer}>
-                    <Image
-                        style={styles.image}
-                        resizeMode="cover"
-                        source={{ uri: `${baseUri}${image}`}}
-                    />
-                </View>
-                <View style={styles.textContainer}>
-                    <Text style={styles.title}>{title}</Text>
-                    <View style={styles.information}>
-                        <Text>{`Listo en ${readyInMinutes} min`}</Text>
-                        <Text>{`Para ${servings} personas`}</Text>
-                    </View>
-                </View>
-                <AddToCart onPress={onPress}/>
+const DishCard = ({ title, readyInMinutes, servings, image, onPress }) => {
+    return (
+        <View style={styles.container}>
+            <View style={styles.imageContainer}>
+                <Image
+                    style={styles.image}
+                    resizeMode="cover"
+                    source={{ uri: `${baseUri}${image}`}}
+                />
             </View>
-        )
-    }
+            <View style={styles.textContainer}>
+                <Text style={styles.title}>{title}</Text>
+                <View style={styles.information}>
+                    <Text>{`Listo en ${readyInMinutes} min`}</Text>
+                    <Text>{`Para ${servings} personas`}</Text>
+                </View>
+            </View>
+            <AddToCart onPress={onPress}/>
+        </View>
+    )
 }
+
+export default DishCard;

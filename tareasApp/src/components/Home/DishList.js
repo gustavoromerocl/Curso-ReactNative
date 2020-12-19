@@ -75,7 +75,6 @@ export default class DishList extends Component {
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({item:{id, title, readyInMinutes, servings, image }}) => (
                         <DishCard
-                            key={title}
                             title={title}
                             readyInMinutes={readyInMinutes} 
                             servings={servings} 
