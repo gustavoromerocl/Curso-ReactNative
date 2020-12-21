@@ -18,6 +18,7 @@ import {
 import Tarea1 from './components/commons/Tarea1';
 
 import colors from './config/colors';
+import RootNavigation from './routes/RootNavigation';
 import Home from './screen/Home';
 
 const styles = StyleSheet.create({
@@ -34,7 +35,7 @@ const App: () => React$Node = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
-        <Home/>
+        <RootNavigation/>
       </SafeAreaView>
     </>
   );

@@ -67,6 +67,7 @@ export default class DishList extends Component {
 
     render() {
         const { selectedDishes, dishes, modalActive } = this.state
+        const { navigation } = this.props
         return (
             <>  
                 <FlatList
@@ -74,13 +75,16 @@ export default class DishList extends Component {
                     data={dishes}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({item:{id, title, readyInMinutes, servings, image }}) => (
-                        <DishCard
-                            title={title}
-                            readyInMinutes={readyInMinutes} 
-                            servings={servings} 
-                            image={image}
-                            onPress={() => this.selectDishes(id)}
-                        />
+                        <TouchableOpacity onPress={() => navigation.navigate('Cart', {title,readyInMinutes,servings,image})}>
+                            <DishCard
+                                title={title}
+                                readyInMinutes={readyInMinutes} 
+                                servings={servings} 
+                                image={image}
+                                onPress={() => this.selectDishes(id)}
+                            />
+                        </TouchableOpacity>
+
                     )}
                     ListEmptyComponent={() => (
                         <View>
