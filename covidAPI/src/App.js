@@ -19,12 +19,10 @@ const App: () => React$Node = () => {
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaProvider>
-        <RootNavigation/>
+        <RootNavigation />
       </SafeAreaProvider>
     </>
   );
 };
-
-
 
 export default App;
