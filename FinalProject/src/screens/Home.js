@@ -1,7 +1,17 @@
 import React, {Component} from 'react';
-import {View, Button, FlatList} from 'react-native';
+import {View, Button, FlatList, StyleSheet} from 'react-native';
 import Axios from 'axios';
 import CatImage from '../components/CatImage';
+import CatCard from '../components/CatCard';
+import CatList from '../components/CatList';
+import colors from '../config/colors';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.gray,
+  },
+});
 
 export default class Home extends Component {
   constructor(props) {
@@ -29,18 +39,16 @@ export default class Home extends Component {
     }
   };
 
+  componentDidMount = () => {
+    this.fetchCat();
+  };
+
   render() {
     const {currentData} = this.state;
 
-    console.log(currentData);
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Button onPress={this.fetchCat} title="LLamar a API CAT" />
-        <FlatList
-          data={currentData}
-          keyExtractor={(item) => item.id}
-          renderItem={({item: {url, width}}) => <CatImage catUrl={url} />}
-        />
+      <View style={styles.container}>
+        <CatList data={currentData} />
       </View>
     );
   }

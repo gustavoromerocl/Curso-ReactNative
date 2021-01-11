@@ -106,7 +106,7 @@ https://api.covid19api.com
 
 
 ANDROID STUDIO EN UBUNTU
-Ejecutar el siguiente comando
+Ejecutar el siguiente comando sobre preyectos descargados desde github
 
 sudo chmod 755 android/gradlew
 
@@ -116,7 +116,10 @@ sudo chmod -R 777 node-modules
 sudo chmod -R 777 android 
 export ANDROID_HOME=~/Library/Android/sdk
 
+REACT NATIVE DEBUGER
 
+Ejecutar 
+REACT_DEBUGGER="rndebugger-open --open --port 8080" npm start
 
 
 

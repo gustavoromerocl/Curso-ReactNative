@@ -1,23 +1,19 @@
 import React from 'react';
 import {Image, StyleSheet} from 'react-native';
-import {TouchableOpacity, TouchableWithoutFeedback} from 'react-native-gesture-handler';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
-  touchable: {
-    width: 400,
-    height: 400,
-  },
   image: {
-    width: '100%',
     height: '100%',
+    width: '100%',
+    backgroundColor: '#34495e',
   },
 });
 
-const CatImage = ({catUrl}) => {
-  console.log(catUrl);
+const CatImage = ({toggle, catUrl}) => {
   return (
-    <TouchableWithoutFeedback style={styles.touchable}>
-      <Image source={{uri: catUrl}} resizeMode="contain" style={styles.image} />
+    <TouchableWithoutFeedback style={styles.touchable} onPress={toggle}>
+      <Image source={{uri: catUrl}} resizeMode="cover" style={styles.image} />
     </TouchableWithoutFeedback>
   );
 };

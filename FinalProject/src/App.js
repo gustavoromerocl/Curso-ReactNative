@@ -9,13 +9,16 @@
 import React from 'react';
 import {SafeAreaView, StatusBar} from 'react-native';
 import RootNavigation from './routes/RootNavigation';
-import Home from './screens/Home';
+import {Provider} from 'react-redux';
+import store from './redux/store';
 
 const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <RootNavigation />
+      <Provider store={store}>
+        <RootNavigation />
+      </Provider>
     </>
   );
 };

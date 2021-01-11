@@ -1,10 +1,41 @@
-import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import React from 'react';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import {connect} from 'react-redux';
+import colors from '../config/colors';
+import {logout} from '../redux/actions';
 
-const Settings = () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text> Settings </Text>
-  </View>
-);
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  text: {
+    paddingLeft: 10,
+  },
+});
 
-export default Settings;
+const Settings = ({logout}) => {
+  AntDesignIcon.loadFont();
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity onPress={logout} style={styles.button}>
+        <AntDesignIcon name="logout" color={colors.black} size={30} />
+        <Text style={styles.text}>Logout</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+//const mapStateToProps = (state) => state;
+
+const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch(logout()),
+});
+
+export default connect(null, mapDispatchToProps)(Settings);
