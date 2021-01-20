@@ -7,7 +7,11 @@ const Heart = ({heart, like, ratingPress}) => {
   if (heart) {
     return (
       <TouchableOpacity onPress={() => ratingPress()}>
-        <Icon name="heart" size={40} color={like ? colors.skyBlue : colors.gray} />
+        <Icon
+          name="heart"
+          size={40}
+          color={like ? colors.skyBlue : colors.gray}
+        />
       </TouchableOpacity>
     );
   }

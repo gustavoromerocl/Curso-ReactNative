@@ -1,5 +1,6 @@
-//import {AsyncStorage} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+
+/**LOGIN*/
 
 export const login = ({user, password}) => {
   //console.log('login in: ', {user, password});
@@ -7,7 +8,7 @@ export const login = ({user, password}) => {
     dispatch({
       type: 'START_LOADING',
     });
-    if (user === 'test' && password === 'test') {
+    if (user === 'cat' && password === 'cat') {
       const currentSession = new Date().getTime().toString();
       AsyncStorage.setItem('sessionId', currentSession);
       dispatch({

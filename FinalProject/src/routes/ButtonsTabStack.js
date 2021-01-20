@@ -43,7 +43,11 @@ const ButtonsTabStack = () => {
             MaterialCommunityIcons.loadFont();
             return (
               <View>
-                <MaterialCommunityIcons name="filter" color={color} size={30} />
+                <MaterialCommunityIcons
+                  name="view-grid"
+                  color={color}
+                  size={30}
+                />
               </View>
             );
           },
@@ -57,11 +61,7 @@ const ButtonsTabStack = () => {
             MaterialCommunityIcons.loadFont();
             return (
               <View>
-                <MaterialCommunityIcons
-                  name="account"
-                  color={color}
-                  size={30}
-                />
+                <MaterialCommunityIcons name="cat" color={color} size={30} />
               </View>
             );
           },
