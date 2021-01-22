@@ -11,14 +11,17 @@ import {SafeAreaView, StatusBar} from 'react-native';
 import RootNavigation from './routes/RootNavigation';
 import {Provider} from 'react-redux';
 import store from './redux/store';
+import UserHandler from './context/User';
 
 const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <Provider store={store}>
-        <RootNavigation />
-      </Provider>
+      <UserHandler>
+        <Provider store={store}>
+          <RootNavigation />
+        </Provider>
+      </UserHandler>
     </>
   );
 };
