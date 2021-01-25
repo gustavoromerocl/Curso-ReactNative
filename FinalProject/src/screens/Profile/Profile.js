@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Button, Modal, StyleSheet, Text, View} from 'react-native';
 import {TextInput, TouchableHighlight} from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../../config/colors';
 import AddPhoto from '../../components/Photo/AddPhoto';
 import {useUserInformation} from '../../context/User';
+import {ThemeContext} from '../../context/Theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -42,8 +43,12 @@ const Profile = () => {
     storeData,
   } = useUserInformation();
 
+  const {
+    mainTheme: {backgroundColor, textColor},
+  } = useContext(ThemeContext);
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: backgroundColor}]}>
       <View style={styles.containerImage}>
         <AddPhoto uri={photo} />
       </View>

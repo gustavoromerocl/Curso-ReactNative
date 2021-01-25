@@ -12,16 +12,19 @@ import RootNavigation from './routes/RootNavigation';
 import {Provider} from 'react-redux';
 import store from './redux/store';
 import UserHandler from './context/User';
+import Theme from './context/Theme';
 
 const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <UserHandler>
-        <Provider store={store}>
-          <RootNavigation />
-        </Provider>
-      </UserHandler>
+      <Provider store={store}>
+        <Theme>
+          <UserHandler>
+            <RootNavigation />
+          </UserHandler>
+        </Theme>
+      </Provider>
     </>
   );
 };

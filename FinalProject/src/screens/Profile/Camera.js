@@ -50,7 +50,7 @@ const Camera = () => {
       <RNCamera
         style={styles.preview}
         type={RNCamera.Constants.Type.back}
-        flashMode={RNCamera.Constants.FlashMode.on}
+        flashMode={RNCamera.Constants.FlashMode.off}
         captureAudio={false}>
         {({camera, status}) => {
           if (status !== 'READY') {

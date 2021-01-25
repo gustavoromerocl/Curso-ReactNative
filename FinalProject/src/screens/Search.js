@@ -1,10 +1,14 @@
-import React, {Component} from 'react';
+import React, {Component, useContext} from 'react';
 import {View, Text} from 'react-native';
+import { ThemeContext } from '../context/Theme';
 
-const Search = () => (
-  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text> Search </Text>
-  </View>
-);
+const Search = () => {
+  const {mainTheme: {backgroundColor, textColor}} = useContext(ThemeContext);
+  return (
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: backgroundColor}}>
+      <Text> Search </Text>
+    </View>
+  );
+};
 
 export default Search;

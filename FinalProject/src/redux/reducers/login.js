@@ -1,6 +1,7 @@
 const defaultState = {
   valid: undefined,
   sessionId: null,
+  loading: false,
 };
 
 const login = (state = defaultState, action) => {

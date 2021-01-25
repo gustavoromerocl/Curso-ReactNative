@@ -1,19 +1,16 @@
 import React, {Component} from 'react';
-import {View, Button, FlatList, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import Axios from 'axios';
-import CatImage from '../components/CatImage';
-import CatCard from '../components/CatCard';
-import CatList from '../components/CatList';
-import colors from '../config/colors';
+import CatList from '../../components/CatList';
+import {ThemeContext} from '../../context/Theme';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.gray,
   },
 });
 
-export default class Home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,11 +42,21 @@ export default class Home extends Component {
 
   render() {
     const {currentData} = this.state;
-
+    const {
+      mainTheme: {backgroundColor, textColor},
+    } = this.props;
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {backgroundColor: backgroundColor}]}>
         <CatList data={currentData} />
       </View>
     );
   }
 }
+
+const HomeWrapper = () => (
+  <ThemeContext.Consumer>
+    {({mainTheme}) => <Home mainTheme={mainTheme} />}
+  </ThemeContext.Consumer>
+);
+
+export default HomeWrapper;

@@ -1,6 +1,6 @@
 // In App.js in a new project
 
-import React from 'react';
+import React, {useContext} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -10,13 +10,21 @@ import ProfileNavigation from './ProfileStack';
 import SettingNavigation from './SettingStack';
 import SearchNavigation from './SearchStack';
 import colors from '../config/colors';
+import {ThemeContext} from '../context/Theme';
 
 const Tab = createBottomTabNavigator();
 
 const ButtonsTabStack = () => {
+  const {
+    mainTheme: {backgroundColor, textColor},
+  } = useContext(ThemeContext);
+
   return (
     <Tab.Navigator
       tabBarOptions={{
+        style: {
+          backgroundColor: backgroundColor,
+        },
         showLabel: false,
         activeTintColor: colors.skyBlue,
         inactiveTintColor: colors.gray,
