@@ -9,7 +9,7 @@ const ProfileStack = createStackNavigator();
 
 const ProfileNavigation = () => {
   const {
-    mainTheme: {backgroundColor, textColor},
+    mainTheme: {backgroundColor, textColor, primaryColor},
   } = useContext(ThemeContext);
 
   return (
@@ -18,7 +18,7 @@ const ProfileNavigation = () => {
         name="Profile"
         component={Profile}
         options={{
-          headerTintColor: colors.skyBlue,
+          headerTintColor: primaryColor,
           headerStyle: {backgroundColor: backgroundColor},
         }}
       />
@@ -26,7 +26,7 @@ const ProfileNavigation = () => {
         name="Camera"
         component={Camera}
         options={{
-          headerTintColor: colors.skyBlue,
+          headerTintColor: primaryColor,
           headerStyle: {backgroundColor: backgroundColor},
         }}
       />

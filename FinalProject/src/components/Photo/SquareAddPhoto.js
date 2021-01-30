@@ -8,12 +8,12 @@ import { ThemeContext } from '../../context/Theme';
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    height: '100%',
     alignItems: 'center',
   },
-  circleContainer: {
-    width: 130,
-    height: 130,
-    borderRadius: 100,
+  squareContainer: {
+    width: '100%',
+    height: 200,
     backgroundColor: colors.white,
     justifyContent: 'center',
     alignItems: 'center',
@@ -25,9 +25,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageFrame: {
-    width: 120,
-    height: 120,
-    borderRadius: 100,
+    width: '100%',
+    height: '100%',
   },
   textStyle: {
     paddingTop: 15,
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const AddPhoto = ({uri = null}) => {
+const SquareAddPhoto = ({uri = null}) => {
   const navigation = useNavigation();
 
   const {
@@ -50,22 +49,25 @@ const AddPhoto = ({uri = null}) => {
         {borderColor: textColor},
       ]}>
       <Icon name="image-plus" color={textColor} size={30} />
-      <Text style={[styles.textStyle, {color: textColor}]}>Agregar Foto</Text>
+      <Text style={[styles.textStyle, {color: textColor}]}>Agregar Fondo</Text>
     </View>
   ) : (
-    <Image style={styles.imageFrame} source={{uri}} />
+    <Image
+      style={styles.imageFrame}
+      source={require('../../assets/test_background_image.jpg')}
+    />
   );
 
   return (
     <View style={styles.container}>
       <TouchableHighlight
-        onPress={() => navigation.navigate('Camera')}
-        underlayColor={colors.gray}
-        style={[styles.circleContainer, {backgroundColor: backgroundColor}]}>
+        onPress={() => {}}
+        underlayColor={textColor}
+        style={[styles.squareContainer, {backgroundColor: backgroundColor}]}>
         {ImagePhoto}
       </TouchableHighlight>
     </View>
   );
 };
 
-export default AddPhoto;
+export default SquareAddPhoto;

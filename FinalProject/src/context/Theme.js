@@ -6,11 +6,13 @@ export const ThemeContext = React.createContext();
 const lightTheme = {
   backgroundColor: colors.white,
   textColor: colors.black,
+  primaryColor: colors.pink,
 };
 
 const darkTheme = {
   backgroundColor: colors.black,
   textColor: colors.white,
+  primaryColor: colors.skyBlue,
 };
 
 const Theme = ({children}) => {

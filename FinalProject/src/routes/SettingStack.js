@@ -8,7 +8,7 @@ const SettingStack = createStackNavigator();
 
 const SettingNavigation = () => {
   const {
-    mainTheme: {backgroundColor, textColor},
+    mainTheme: {backgroundColor, textColor, primaryColor},
   } = useContext(ThemeContext);
 
   return (
@@ -17,7 +17,7 @@ const SettingNavigation = () => {
         name="Settings"
         component={Settings}
         options={{
-          headerTintColor: colors.skyBlue,
+          headerTintColor: primaryColor,
           headerStyle: {backgroundColor: backgroundColor},
         }}
       />

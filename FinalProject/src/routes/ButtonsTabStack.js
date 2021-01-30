@@ -8,15 +8,16 @@ import {View} from 'react-native';
 import HomeNavigation from './HomeStack';
 import ProfileNavigation from './ProfileStack';
 import SettingNavigation from './SettingStack';
-import SearchNavigation from './SearchStack';
+import SearchNavigation from './PortfolioStack';
 import colors from '../config/colors';
 import {ThemeContext} from '../context/Theme';
+import PortfolioNavigation from './PortfolioStack';
 
 const Tab = createBottomTabNavigator();
 
 const ButtonsTabStack = () => {
   const {
-    mainTheme: {backgroundColor, textColor},
+    mainTheme: {backgroundColor, textColor, primaryColor},
   } = useContext(ThemeContext);
 
   return (
@@ -26,7 +27,7 @@ const ButtonsTabStack = () => {
           backgroundColor: backgroundColor,
         },
         showLabel: false,
-        activeTintColor: colors.skyBlue,
+        activeTintColor: primaryColor,
         inactiveTintColor: colors.gray,
       }}>
       <Tab.Screen
@@ -44,8 +45,8 @@ const ButtonsTabStack = () => {
         }}
       />
       <Tab.Screen
-        name="SearchTab"
-        component={SearchNavigation}
+        name="PortfolioTab"
+        component={PortfolioNavigation}
         options={{
           tabBarIcon: ({focused, color, size}) => {
             MaterialCommunityIcons.loadFont();

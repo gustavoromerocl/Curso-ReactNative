@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
-import CatList from '../../components/Home/CatList';
 import {ThemeContext} from '../../context/Theme';
+import CatGrid from '../../components/Portfolio/CatGrid';
 import {UserContext} from '../../context/User';
 
 const styles = StyleSheet.create({
@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class Home extends Component {
+class Portfolio extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,24 +23,28 @@ class Home extends Component {
       mainTheme: {backgroundColor, textColor},
       rollProfilePhotos,
     } = this.props;
+    console.log('portfolio:', rollProfilePhotos);
     return (
       <View style={[styles.container, {backgroundColor: backgroundColor}]}>
-        <CatList data={rollProfilePhotos} />
+        <CatGrid data={rollProfilePhotos} />
       </View>
     );
   }
 }
 
-const HomeWrapper = () => (
+const PortfolioWrapper = () => (
   <ThemeContext.Consumer>
     {({mainTheme}) => (
       <UserContext.Consumer>
         {({rollProfilePhotos}) => (
-          <Home mainTheme={mainTheme} rollProfilePhotos={rollProfilePhotos} />
+          <Portfolio
+            mainTheme={mainTheme}
+            rollProfilePhotos={rollProfilePhotos}
+          />
         )}
       </UserContext.Consumer>
     )}
   </ThemeContext.Consumer>
 );
 
-export default HomeWrapper;
+export default PortfolioWrapper;

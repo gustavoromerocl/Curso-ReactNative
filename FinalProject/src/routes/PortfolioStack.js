@@ -1,28 +1,28 @@
 import React, {useContext} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import Profile from '../screens/Profile/Profile';
-import {ThemeContext} from '../context/Theme';
 import colors from '../config/colors';
+import {ThemeContext} from '../context/Theme';
+import Portfolio from '../screens/Portolio/Portfolio';
 
-const PhotoStack = createStackNavigator();
+const PortfolioStack = createStackNavigator();
 
-const PhotoNavigation = () => {
+const PortfolioNavigation = () => {
   const {
     mainTheme: {backgroundColor, textColor, primaryColor},
   } = useContext(ThemeContext);
 
   return (
-    <PhotoStack.Navigator>
-      <PhotoStack.Screen
-        name="Photo"
-        component={Profile}
+    <PortfolioStack.Navigator>
+      <PortfolioStack.Screen
+        name="Portfolio"
+        component={Portfolio}
         options={{
           headerTintColor: primaryColor,
           headerStyle: {backgroundColor: backgroundColor},
         }}
       />
-    </PhotoStack.Navigator>
+    </PortfolioStack.Navigator>
   );
 };
 
-export default PhotoNavigation;
+export default PortfolioNavigation;
