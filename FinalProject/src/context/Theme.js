@@ -1,4 +1,5 @@
 import React, {useContext, useState} from 'react';
+import { StatusBar } from 'react-native';
 import colors from '../config/colors';
 
 export const ThemeContext = React.createContext();
@@ -21,7 +22,11 @@ const Theme = ({children}) => {
 
   const toggleDarkMode = () => {
     const theme = !darkModeEnabled ? darkTheme : lightTheme;
+    const statusBarStyle = !darkModeEnabled ? 'light-content' : 'dark-content';
+    const statusBackground = !darkModeEnabled ? colors.black : colors.white;
 
+    StatusBar.setBackgroundColor(statusBackground);
+    StatusBar.setBarStyle(statusBarStyle);
     updateMainTheme(theme);
     updateDarkModeEnabled(!darkModeEnabled);
   };

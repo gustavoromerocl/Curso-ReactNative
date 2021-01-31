@@ -16,16 +16,13 @@ import Theme from './context/Theme';
 
 const App: () => React$Node = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <Provider store={store}>
-        <Theme>
-          <UserHandler>
-            <RootNavigation />
-          </UserHandler>
-        </Theme>
-      </Provider>
-    </>
+    <Provider store={store}>
+      <Theme>
+        <UserHandler>
+          <RootNavigation />
+        </UserHandler>
+      </Theme>
+    </Provider>
   );
 };
 
