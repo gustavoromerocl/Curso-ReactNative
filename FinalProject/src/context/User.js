@@ -1,6 +1,5 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import Axios from 'axios';
 
 export const UserContext = React.createContext();
 
@@ -9,7 +8,6 @@ const UserHandler = ({children}) => {
   const [email, updateEmail] = useState('test@test.cl');
   const [number, updateNumber] = useState('+56962779973');
   const [photo, updatePhoto] = useState(null);
-  const [rollProfilePhotos, updateRollProfilePhotos] = useState(null);
 
   const storeData = async ({name, email, number}) => {
     try {
@@ -46,28 +44,6 @@ const UserHandler = ({children}) => {
     getData();
   }, [getData]);
 
-  const fetchCat = useCallback(async () => {
-    try {
-      Axios.defaults.headers.common['x-api-key'] =
-        '2c7e068b-6c10-4846-847c- a50e06b2baa7';
-      const {status, data} = await Axios.get(
-        'https://api.thecatapi.com/v1/images/search',
-        {
-          params: {limit: 15, size: 'full'},
-        },
-      );
-      if (status === 200) {
-        updateRollProfilePhotos(data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchCat();
-  }, [fetchCat]);
-
   return (
     <UserContext.Provider
       value={{
@@ -80,7 +56,6 @@ const UserHandler = ({children}) => {
         photo,
         updatePhoto,
         storeData,
-        rollProfilePhotos,
       }}>
       {children}
     </UserContext.Provider>

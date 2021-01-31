@@ -15,6 +15,7 @@ import {ThemeContext} from '../../context/Theme';
 import SquareAddPhoto from '../../components/Photo/SquareAddPhoto';
 import CatGrid from '../../components/Portfolio/CatGrid';
 import GridCard from '../../components/Portfolio/GridCard';
+import { useApiInformation } from '../../context/LoadApi';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -66,9 +67,10 @@ const Profile = () => {
     number,
     updateNumber,
     photo,
-    rollProfilePhotos,
     storeData,
   } = useUserInformation();
+
+  const {rollPhotos} = useApiInformation();
 
   const {
     mainTheme: {backgroundColor, textColor, primaryColor},
@@ -106,7 +108,7 @@ const Profile = () => {
           </>
         }
         numColumns={3}
-        data={rollProfilePhotos}
+        data={rollPhotos}
         keyExtractor={(item) => item.id}
         renderItem={({item: {url, width}}) => <GridCard url={url} />}
       />

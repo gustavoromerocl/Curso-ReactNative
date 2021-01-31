@@ -13,13 +13,16 @@ import {Provider} from 'react-redux';
 import store from './redux/store';
 import UserHandler from './context/User';
 import Theme from './context/Theme';
+import LoadApi from './context/LoadApi';
 
 const App: () => React$Node = () => {
   return (
     <Provider store={store}>
       <Theme>
         <UserHandler>
-          <RootNavigation />
+          <LoadApi>
+            <RootNavigation />
+          </LoadApi>
         </UserHandler>
       </Theme>
     </Provider>

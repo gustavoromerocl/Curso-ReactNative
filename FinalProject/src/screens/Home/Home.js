@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import CatList from '../../components/Home/CatList';
+import {ApiContext} from '../../context/LoadApi';
 import {ThemeContext} from '../../context/Theme';
-import {UserContext} from '../../context/User';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,11 +21,11 @@ class Home extends Component {
   render() {
     const {
       mainTheme: {backgroundColor, textColor},
-      rollProfilePhotos,
+      rollPhotos,
     } = this.props;
     return (
       <View style={[styles.container, {backgroundColor: backgroundColor}]}>
-        <CatList data={rollProfilePhotos} />
+        <CatList data={rollPhotos} />
       </View>
     );
   }
@@ -34,11 +34,11 @@ class Home extends Component {
 const HomeWrapper = () => (
   <ThemeContext.Consumer>
     {({mainTheme}) => (
-      <UserContext.Consumer>
-        {({rollProfilePhotos}) => (
-          <Home mainTheme={mainTheme} rollProfilePhotos={rollProfilePhotos} />
+      <ApiContext.Consumer>
+        {({rollPhotos}) => (
+          <Home mainTheme={mainTheme} rollPhotos={rollPhotos} />
         )}
-      </UserContext.Consumer>
+      </ApiContext.Consumer>
     )}
   </ThemeContext.Consumer>
 );
