@@ -28,11 +28,12 @@ const styles = StyleSheet.create({
   text: {
     paddingLeft: 10,
     fontSize: 20,
+    fontFamily: 'IndieFlower-Regular',
   },
   titleText: {
     paddingLeft: 10,
     fontSize: 40,
-    fontWeight: 'bold',
+    fontFamily: 'FreckleFace-Regular',
   },
   image: {
     width: 120,

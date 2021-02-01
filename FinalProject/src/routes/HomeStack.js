@@ -3,9 +3,7 @@
 import React, {useContext} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../screens/Home/Home';
-import colors from '../config/colors';
 import {ThemeContext} from '../context/Theme';
-import { color } from 'react-native-reanimated';
 
 const HomeStack = createStackNavigator();
 
@@ -22,6 +20,7 @@ const HomeNavigation = () => {
         options={{
           headerTintColor: primaryColor,
           headerStyle: {backgroundColor: backgroundColor},
+          headerTitleStyle: {fontFamily: 'FreckleFace-Regular'},
         }}
       />
     </HomeStack.Navigator>

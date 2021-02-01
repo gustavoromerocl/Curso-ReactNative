@@ -20,6 +20,7 @@ const ProfileNavigation = () => {
         options={{
           headerTintColor: primaryColor,
           headerStyle: {backgroundColor: backgroundColor},
+          headerTitleStyle: {fontFamily: 'FreckleFace-Regular'},
         }}
       />
       <ProfileStack.Screen

@@ -38,14 +38,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   textStart: {
-    fontSize: 40,
+    fontSize: 30,
     color: colors.pink,
-    fontWeight: 'bold',
+    fontFamily: 'Frijole-Regular',
   },
   textEnd: {
-    fontSize: 40,
+    fontSize: 30,
     color: colors.black,
-    fontWeight: 'bold',
+    fontFamily: 'Frijole-Regular',
   },
   inputContainer: {
     justifyContent: 'flex-start',
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     borderBottomWidth: 2,
     borderBottomColor: colors.pink,
+    fontFamily: 'IndieFlower-Regular',
   },
   inputSubmit: {
     backgroundColor: colors.pink,
@@ -78,6 +79,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: colors.white,
     marginRight: 15,
+    fontFamily: 'IndieFlower-Regular',
   },
   image: {
     resizeMode: 'stretch',

@@ -19,6 +19,7 @@ const SettingNavigation = () => {
         options={{
           headerTintColor: primaryColor,
           headerStyle: {backgroundColor: backgroundColor},
+          headerTitleStyle: {fontFamily: 'FreckleFace-Regular'},
         }}
       />
     </SettingStack.Navigator>

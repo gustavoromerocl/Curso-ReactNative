@@ -19,6 +19,7 @@ const PortfolioNavigation = () => {
         options={{
           headerTintColor: primaryColor,
           headerStyle: {backgroundColor: backgroundColor},
+          headerTitleStyle: {fontFamily: 'FreckleFace-Regular'},
         }}
       />
     </PortfolioStack.Navigator>

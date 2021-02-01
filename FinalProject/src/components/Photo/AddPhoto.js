@@ -1,9 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet, TouchableHighlight, Image, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../../config/colors';
-import { ThemeContext } from '../../context/Theme';
+import {ThemeContext} from '../../context/Theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   addPhotoContainer: {
     borderColor: colors.black,
-    borderWidth: 2,
+    borderWidth: 0.6,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     paddingTop: 15,
-    color: colors.black,
+    fontFamily: 'IndieFlower-Regular',
   },
 });
 
