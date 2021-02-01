@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import {
   Text,
   View,
@@ -10,7 +10,7 @@ import {
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 import {connect} from 'react-redux';
 import colors from '../../config/colors';
-import useTheme, { ThemeContext } from '../../context/Theme';
+import {ThemeContext} from '../../context/Theme';
 import {useUserInformation} from '../../context/User';
 import {logout} from '../../redux/actions';
 

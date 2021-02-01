@@ -2,9 +2,7 @@ import React, {useContext, useState} from 'react';
 import {Button, Modal, StyleSheet, Text, View} from 'react-native';
 import {
   FlatList,
-  ScrollView,
   TextInput,
-  TouchableHighlight,
   TouchableOpacity,
 } from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -13,9 +11,8 @@ import AddPhoto from '../../components/Photo/AddPhoto';
 import {useUserInformation} from '../../context/User';
 import {ThemeContext} from '../../context/Theme';
 import SquareAddPhoto from '../../components/Photo/SquareAddPhoto';
-import CatGrid from '../../components/Portfolio/CatGrid';
 import GridCard from '../../components/Portfolio/GridCard';
-import { useApiInformation } from '../../context/LoadApi';
+import {useApiInformation} from '../../context/LoadApi';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
