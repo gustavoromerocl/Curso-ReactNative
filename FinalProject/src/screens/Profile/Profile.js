@@ -43,11 +43,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 40,
-    fontFamily: 'FreckleFace-Regular',
+    fontFamily: 'LondrinaSolid-Regular',
   },
   text: {
     fontSize: 20,
-    fontFamily: 'IndieFlower-Regular',
+    fontFamily: 'LondrinaSolid-Light',
   },
 });
 

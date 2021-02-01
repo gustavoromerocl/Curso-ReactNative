@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
   text: {
     paddingLeft: 10,
     fontSize: 20,
-    fontFamily: 'IndieFlower-Regular',
+    fontFamily: 'LondrinaSolid-Light',
   },
   titleText: {
     paddingLeft: 10,
     fontSize: 40,
-    fontFamily: 'FreckleFace-Regular',
+    fontFamily: 'LondrinaSolid-Regular',
   },
   image: {
     width: 120,

@@ -1,7 +1,6 @@
 import React, {useContext} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Settings from '../screens/Settings/Settings';
-import colors from '../config/colors';
 import {ThemeContext} from '../context/Theme';
 
 const SettingStack = createStackNavigator();
@@ -19,7 +18,7 @@ const SettingNavigation = () => {
         options={{
           headerTintColor: primaryColor,
           headerStyle: {backgroundColor: backgroundColor},
-          headerTitleStyle: {fontFamily: 'FreckleFace-Regular'},
+          headerTitleStyle: {fontFamily: 'LondrinaSolid-Regular'},
         }}
       />
     </SettingStack.Navigator>
