@@ -21,7 +21,6 @@ import {
   loginLoadingSelector,
 } from '../../redux/selectors/loginSelector';
 
-const {width} = Dimensions.get('window');
 const {height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -78,7 +77,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 50,
+    marginTop: '10%',
     padding: 10,
   },
   buttonText: {

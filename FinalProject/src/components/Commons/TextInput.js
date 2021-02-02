@@ -9,18 +9,24 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   label: {
-    fontSize: 20,
+    fontSize: 15,
     color: colors.black,
+    fontFamily: 'LondrinaSolid-Light',
   },
   inputContainer: {
     marginTop: 10,
     marginBottom: 5,
-    backgroundColor: colors.white,
     borderRadius: 7,
   },
   textInput: {
-    padding: 10,
+    fontSize: 20,
+    marginVertical: 10,
+    paddingLeft: 10,
     color: colors.black,
+    textAlign: 'center',
+    borderBottomWidth: 2,
+    borderBottomColor: colors.pink,
+    fontFamily: 'LondrinaSolid-Light',
   },
 });
 
@@ -32,8 +38,9 @@ const TextInput = ({
   onChange = () => {},
 }) => {
   const {
-    mainTheme: {textColor},
+    mainTheme: {textColor, primaryColor},
   } = useTheme();
+
   return (
     <View style={styles.container}>
       <Text style={[styles.label, {color: textColor}]}>{labelTag}</Text>
@@ -41,7 +48,10 @@ const TextInput = ({
         <TextInputRN
           testID="TextInput"
           value={value}
-          style={styles.textInput}
+          style={[
+            styles.textInput,
+            {color: textColor, borderBottomColor: primaryColor},
+          ]}
           placeholder={placeholder}
           keyboardType={type}
           onChangeText={onChange}

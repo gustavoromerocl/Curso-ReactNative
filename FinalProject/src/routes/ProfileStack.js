@@ -2,8 +2,8 @@ import React, {useContext} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Profile from '../screens/Profile/Profile';
 import Camera from '../screens/Profile/Camera';
-import colors from '../config/colors';
 import {ThemeContext} from '../context/Theme';
+import EditProfile from '../screens/Profile/EditProfile';
 
 const ProfileStack = createStackNavigator();
 
@@ -29,6 +29,15 @@ const ProfileNavigation = () => {
         options={{
           headerTintColor: primaryColor,
           headerStyle: {backgroundColor: backgroundColor},
+        }}
+      />
+      <ProfileStack.Screen
+        name="EditProfile"
+        component={EditProfile}
+        options={{
+          headerTintColor: primaryColor,
+          headerStyle: {backgroundColor: backgroundColor},
+          headerTitleStyle: {fontFamily: 'LondrinaSolid-Regular'},
         }}
       />
     </ProfileStack.Navigator>

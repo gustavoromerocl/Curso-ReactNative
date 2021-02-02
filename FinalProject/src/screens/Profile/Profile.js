@@ -1,18 +1,15 @@
 import React, {useContext, useState} from 'react';
-import {Button, Modal, StyleSheet, Text, View} from 'react-native';
-import {
-  FlatList,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native-gesture-handler';
+import {StyleSheet, Text, View} from 'react-native';
+import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../../config/colors';
 import AddPhoto from '../../components/Photo/AddPhoto';
 import {useUserInformation} from '../../context/User';
 import {ThemeContext} from '../../context/Theme';
-import SquareAddPhoto from '../../components/Photo/SquareAddPhoto';
+import BackgroundAddPhoto from '../../components/Photo/BackgroundAddPhoto';
 import GridCard from '../../components/Portfolio/GridCard';
 import {useApiInformation} from '../../context/LoadApi';
+import {useNavigation} from '@react-navigation/native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -46,27 +43,22 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'LondrinaSolid-Light',
   },
+  modalStyle: {
+    marginVertical: 200,
+    marginHorizontal: 10,
+    backgroundColor: colors.white,
+    padding: 20,
+    borderRadius: 15,
+    borderColor: colors.pink,
+    borderWidth: 2,
+  },
 });
 
-/**
- *    <TouchableHighlight underlayColor={colors.skyBlue} onPress={() => {}}>
-        <MaterialCommunityIcons name="camera" color={colors.gray} size={40} />
-      </TouchableHighlight>
- */
 const Profile = () => {
   const [modalActive, updateModal] = useState(false);
   const toogleModal = () => updateModal(!modalActive);
-
-  const {
-    name,
-    updateName,
-    email,
-    updateEmail,
-    number,
-    updateNumber,
-    photo,
-    storeData,
-  } = useUserInformation();
+  const navigation = useNavigation();
+  const {name, email, number, photo} = useUserInformation();
 
   const {rollPhotos} = useApiInformation();
 
@@ -80,17 +72,18 @@ const Profile = () => {
         ListHeaderComponent={
           <>
             <View style={styles.containerImage}>
-              <SquareAddPhoto uri={photo} />
+              <BackgroundAddPhoto uri={photo} />
             </View>
             <View style={styles.circleImage}>
               <AddPhoto uri={photo} />
             </View>
             <View style={styles.edit}>
-              <TouchableOpacity onPress={toogleModal}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('EditProfile')}>
                 <MaterialCommunityIcons
-                  name="account-edit"
-                  color={colors.gray}
-                  size={40}
+                  name="content-save-edit"
+                  color={primaryColor}
+                  size={50}
                 />
               </TouchableOpacity>
             </View>
@@ -110,35 +103,6 @@ const Profile = () => {
         keyExtractor={(item) => item.id}
         renderItem={({item: {url, width}}) => <GridCard url={url} />}
       />
-      <Modal visible={modalActive}>
-        <Text>Nombre de usuario:</Text>
-        <TextInput
-          placeholder="Username"
-          value={name}
-          onChangeText={(text) => updateName(text)}
-          style={styles.textInput}
-        />
-        <Text>Email:</Text>
-        <TextInput
-          placeholder="Email"
-          value={email}
-          onChangeText={(text) => updateEmail(text)}
-          style={styles.textInput}
-        />
-        <TextInput
-          placeholder="Número"
-          value={number}
-          onChangeText={(text) => updateNumber(text)}
-          style={styles.textInput}
-        />
-        <Button
-          onPress={() => {
-            storeData({name, email, number});
-          }}
-          title="Guardar"
-        />
-        <Button onPress={toogleModal} title="Volver" />
-      </Modal>
     </View>
   );
 };

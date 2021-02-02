@@ -30,11 +30,11 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     paddingTop: 15,
-    fontFamily: 'IndieFlower-Regular',
+    fontFamily: 'LondrinaSolid-Light',
   },
 });
 
-const SquareAddPhoto = ({uri = null}) => {
+const BackgroundAddPhoto = ({uri = null}) => {
   const navigation = useNavigation();
 
   const {
@@ -70,4 +70,4 @@ const SquareAddPhoto = ({uri = null}) => {
   );
 };
 
-export default SquareAddPhoto;
+export default BackgroundAddPhoto;

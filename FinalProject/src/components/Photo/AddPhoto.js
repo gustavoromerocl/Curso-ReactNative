@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     paddingTop: 15,
-    fontFamily: 'IndieFlower-Regular',
+    fontFamily: 'LondrinaSolid-Light',
   },
 });
 
