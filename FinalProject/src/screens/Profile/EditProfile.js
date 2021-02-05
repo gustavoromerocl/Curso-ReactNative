@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import CustomButton from '../../components/Commons/CustomButton';
@@ -50,7 +50,9 @@ const EditProfile = () => {
     <ScrollView style={[styles.container, {backgroundColor: backgroundColor}]}>
       <View style={styles.photoContainer}>
         <AddPhoto uri={photo} />
-        <Text style={[styles.editPhotoText, {color: primaryColor}]}>Cambiar foto de perfil</Text>
+        <Text style={[styles.editPhotoText, {color: primaryColor}]}>
+          Cambiar foto de perfil
+        </Text>
       </View>
       <View style={styles.formContainer}>
         <TextInput

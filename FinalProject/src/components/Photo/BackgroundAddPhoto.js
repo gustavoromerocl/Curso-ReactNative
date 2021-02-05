@@ -1,9 +1,18 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useContext} from 'react';
-import {View, StyleSheet, TouchableHighlight, Image, Text} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TouchableHighlight,
+  Image,
+  Text,
+  Modal,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../../config/colors';
 import {ThemeContext} from '../../context/Theme';
+import ChangePhotoOptions from './ChangePhotoOptions';
+import {useState} from 'react';
+import {useUserInformation} from '../../context/User';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,11 +44,14 @@ const styles = StyleSheet.create({
 });
 
 const BackgroundAddPhoto = ({uri = null}) => {
-  const navigation = useNavigation();
+  const [modalActive, updateModalActive] = useState(false);
+  const {updateBackgroudImage} = useUserInformation();
 
   const {
     mainTheme: {backgroundColor, textColor, primaryColor},
   } = useContext(ThemeContext);
+
+  const toggleModal = () => updateModalActive(!modalActive);
 
   const ImagePhoto = !uri ? (
     <View
@@ -52,20 +64,25 @@ const BackgroundAddPhoto = ({uri = null}) => {
       <Text style={[styles.textStyle, {color: textColor}]}>Agregar Fondo</Text>
     </View>
   ) : (
-    <Image
-      style={styles.imageFrame}
-      source={require('../../assets/test_background_image.jpg')}
-    />
+    <Image style={styles.imageFrame} source={{uri: uri}} />
   );
 
   return (
     <View style={styles.container}>
       <TouchableHighlight
-        onPress={() => {}}
+        onPress={toggleModal}
         underlayColor={textColor}
         style={[styles.squareContainer, {backgroundColor: backgroundColor}]}>
         {ImagePhoto}
       </TouchableHighlight>
+      <Modal visible={modalActive} transparent={true} animationType={'fade'}>
+        <ChangePhotoOptions
+          onPress={toggleModal}
+          setImage={updateBackgroudImage}
+          modal={updateModalActive}
+          title={'Anadir Fondo'}
+        />
+      </Modal>
     </View>
   );
 };

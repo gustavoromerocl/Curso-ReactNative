@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StatusBar} from 'react-native';
 import RootNavigation from './routes/RootNavigation';
 import {Provider} from 'react-redux';
 import store from './redux/store';

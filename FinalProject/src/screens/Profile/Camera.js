@@ -5,6 +5,7 @@ import {RNCamera} from 'react-native-camera';
 import CameraInterface from '../../components/Photo/CameraInterface';
 import colors from '../../config/colors';
 import {useUserInformation} from '../../context/User';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const styles = StyleSheet.create({
   container: {
@@ -45,6 +46,20 @@ const Camera = () => {
     }
   };
 
+  const selectImage = () =>
+    launchImageLibrary(
+      {
+        mediaType: 'photo',
+        includeBase64: false,
+        maxHeight: 200,
+        maxWidth: 200,
+      },
+      (response) => {
+        updatePhoto(response.uri);
+        navigation.navigate('Profile');
+      },
+    );
+
   return (
     <View style={styles.container}>
       <RNCamera
@@ -57,7 +72,13 @@ const Camera = () => {
             return <PendingPreview />;
           }
 
-          return <CameraInterface takePicture={takePicture} camera={camera} />;
+          return (
+            <CameraInterface
+              takePicture={takePicture}
+              camera={camera}
+              selectImage={selectImage}
+            />
+          );
         }}
       </RNCamera>
     </View>

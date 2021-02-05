@@ -8,6 +8,7 @@ const UserHandler = ({children}) => {
   const [email, updateEmail] = useState('test@test.cl');
   const [number, updateNumber] = useState('+56962779973');
   const [photo, updatePhoto] = useState(null);
+  const [backgroundImage, updateBackgroudImage] = useState();
 
   const storeData = async ({name, email, number}) => {
     try {
@@ -56,6 +57,8 @@ const UserHandler = ({children}) => {
         photo,
         updatePhoto,
         storeData,
+        backgroundImage,
+        updateBackgroudImage,
       }}>
       {children}
     </UserContext.Provider>
@@ -73,6 +76,8 @@ type IUser = {
   updatePhoto?: Function,
   storeData?: Function,
   rollProfilePhotos: Array,
+  backgroundImage: String,
+  updateBackgroudImage: Function,
 };
 
 export const useUserInformation = (): IUser => {

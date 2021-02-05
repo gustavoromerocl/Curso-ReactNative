@@ -58,8 +58,8 @@ const Profile = () => {
   const [modalActive, updateModal] = useState(false);
   const toogleModal = () => updateModal(!modalActive);
   const navigation = useNavigation();
-  const {name, email, number, photo} = useUserInformation();
-
+  const {name, email, number, photo, backgroundImage} = useUserInformation();
+  console.log({backgroundImage});
   const {rollPhotos} = useApiInformation();
 
   const {
@@ -72,7 +72,7 @@ const Profile = () => {
         ListHeaderComponent={
           <>
             <View style={styles.containerImage}>
-              <BackgroundAddPhoto uri={photo} />
+              <BackgroundAddPhoto uri={backgroundImage} />
             </View>
             <View style={styles.circleImage}>
               <AddPhoto uri={photo} />

@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {View, StyleSheet, TouchableHighlight, Image, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../../config/colors';
