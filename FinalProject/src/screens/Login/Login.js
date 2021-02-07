@@ -118,14 +118,14 @@ const Login = ({loginIsValid, loginIn, loading}) => {
         <View style={styles.inputContainer}>
           <View style={styles.textInputContainer}>
             <TextInput
-              placeholder="Usuario"
+              placeholder="User"
               value={user}
               autoCapitalize="none"
               onChangeText={(text) => updateUser(text)}
               style={styles.textInput}
             />
             <TextInput
-              placeholder="Contraseña"
+              placeholder="Password"
               value={password}
               autoCapitalize="none"
               onChangeText={(text) => updatePassword(text)}
@@ -135,7 +135,7 @@ const Login = ({loginIsValid, loginIn, loading}) => {
             <TouchableOpacity
               style={styles.inputSubmit}
               onPress={() => loginIn({user, password})}>
-              <Text style={styles.buttonText}>Ingresar</Text>
+              <Text style={styles.buttonText}>Log in</Text>
               <AntDesignIcon name="arrowright" color={colors.white} size={60} />
             </TouchableOpacity>
           </View>

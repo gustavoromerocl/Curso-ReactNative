@@ -79,7 +79,7 @@ const Settings = ({logout}) => {
         </View>
       </View>
       <View style={styles.switchContainer}>
-        <Text style={[styles.text, {color: textColor}]}>Modo oscuro: </Text>
+        <Text style={[styles.text, {color: textColor}]}>Dark mode: </Text>
         <Switch
           trackColor={{false: colors.gray, true: colors.gray}}
           thumbColor={darkModeEnabled ? colors.white : colors.black}
@@ -90,7 +90,7 @@ const Settings = ({logout}) => {
       </View>
       <TouchableOpacity onPress={logout} style={styles.button}>
         <AntDesignIcon name="logout" color={textColor} size={30} />
-        <Text style={[styles.text, {color: textColor}]}>Cerrar sesión</Text>
+        <Text style={[styles.text, {color: textColor}]}>Log out</Text>
       </TouchableOpacity>
     </View>
   );

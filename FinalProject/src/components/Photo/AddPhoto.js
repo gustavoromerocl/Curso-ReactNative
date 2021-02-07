@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet, TouchableHighlight, Image, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../../config/colors';
@@ -39,7 +39,7 @@ const AddPhoto = ({uri = null}) => {
   const navigation = useNavigation();
 
   const {
-    mainTheme: {backgroundColor, textColor, primaryColor},
+    mainTheme: {backgroundColor, textColor},
   } = useContext(ThemeContext);
 
   const ImagePhoto = !uri ? (
@@ -50,7 +50,7 @@ const AddPhoto = ({uri = null}) => {
         {borderColor: textColor},
       ]}>
       <Icon name="image-plus" color={textColor} size={30} />
-      <Text style={[styles.textStyle, {color: textColor}]}>Agregar Foto</Text>
+      <Text style={[styles.textStyle, {color: textColor}]}>Add Photo</Text>
     </View>
   ) : (
     <Image style={styles.imageFrame} source={{uri}} />

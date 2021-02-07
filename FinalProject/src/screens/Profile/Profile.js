@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -55,8 +55,6 @@ const styles = StyleSheet.create({
 });
 
 const Profile = () => {
-  const [modalActive, updateModal] = useState(false);
-  const toogleModal = () => updateModal(!modalActive);
   const navigation = useNavigation();
   const {name, email, number, photo, backgroundImage} = useUserInformation();
   console.log({backgroundImage});
@@ -79,7 +77,7 @@ const Profile = () => {
             </View>
             <View style={styles.edit}>
               <TouchableOpacity
-                onPress={() => navigation.navigate('EditProfile')}>
+                onPress={() => navigation.navigate('Edit Profile')}>
                 <MaterialCommunityIcons
                   name="content-save-edit"
                   color={primaryColor}

@@ -9,7 +9,7 @@ const ProfileStack = createStackNavigator();
 
 const ProfileNavigation = () => {
   const {
-    mainTheme: {backgroundColor, textColor, primaryColor},
+    mainTheme: {backgroundColor, primaryColor},
   } = useContext(ThemeContext);
 
   return (
@@ -33,7 +33,7 @@ const ProfileNavigation = () => {
         }}
       />
       <ProfileStack.Screen
-        name="EditProfile"
+        name="Edit Profile"
         component={EditProfile}
         options={{
           headerTintColor: primaryColor,

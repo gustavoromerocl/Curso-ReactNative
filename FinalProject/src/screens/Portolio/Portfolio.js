@@ -23,7 +23,7 @@ class Portfolio extends Component {
       mainTheme: {backgroundColor, textColor},
       rollPhotos,
     } = this.props;
-    console.log('portfolio:', rollPhotos);
+    //console.log('portfolio:', rollPhotos);
     return (
       <View style={[styles.container, {backgroundColor: backgroundColor}]}>
         <CatGrid data={rollPhotos} />

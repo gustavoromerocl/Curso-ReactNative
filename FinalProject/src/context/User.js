@@ -10,7 +10,7 @@ const UserHandler = ({children}) => {
   const [photo, updatePhoto] = useState(null);
   const [backgroundImage, updateBackgroudImage] = useState();
 
-  const storeData = async ({name, email, number}) => {
+  const updateData = async ({name, email, number}) => {
     try {
       const user = {
         user: name,
@@ -56,7 +56,7 @@ const UserHandler = ({children}) => {
         updateNumber,
         photo,
         updatePhoto,
-        storeData,
+        updateData,
         backgroundImage,
         updateBackgroudImage,
       }}>

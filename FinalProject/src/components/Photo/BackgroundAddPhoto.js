@@ -48,7 +48,7 @@ const BackgroundAddPhoto = ({uri = null}) => {
   const {updateBackgroudImage} = useUserInformation();
 
   const {
-    mainTheme: {backgroundColor, textColor, primaryColor},
+    mainTheme: {backgroundColor, textColor},
   } = useContext(ThemeContext);
 
   const toggleModal = () => updateModalActive(!modalActive);
@@ -61,7 +61,7 @@ const BackgroundAddPhoto = ({uri = null}) => {
         {borderColor: textColor},
       ]}>
       <Icon name="image-plus" color={textColor} size={30} />
-      <Text style={[styles.textStyle, {color: textColor}]}>Agregar Fondo</Text>
+      <Text style={[styles.textStyle, {color: textColor}]}>Add Background</Text>
     </View>
   ) : (
     <Image style={styles.imageFrame} source={{uri: uri}} />

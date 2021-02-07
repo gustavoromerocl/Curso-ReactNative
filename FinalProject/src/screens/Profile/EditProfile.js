@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useContext} from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import CustomButton from '../../components/Commons/CustomButton';
 import TextInput from '../../components/Commons/TextInput';
@@ -33,17 +33,15 @@ const EditProfile = () => {
     name,
     updateName,
     email,
-    updateEmail,
     number,
-    updateNumber,
     photo,
-    storeData,
+    updateData,
   } = useUserInformation();
 
   const navigation = useNavigation();
 
   const {
-    mainTheme: {backgroundColor, textColor, primaryColor},
+    mainTheme: {backgroundColor, primaryColor},
   } = useContext(ThemeContext);
 
   return (
@@ -51,12 +49,12 @@ const EditProfile = () => {
       <View style={styles.photoContainer}>
         <AddPhoto uri={photo} />
         <Text style={[styles.editPhotoText, {color: primaryColor}]}>
-          Cambiar foto de perfil
+          Change profile picture
         </Text>
       </View>
       <View style={styles.formContainer}>
         <TextInput
-          labelTag={'Nombre de usuario:'}
+          labelTag={'Username:'}
           placeholder="Username"
           value={name}
           onChange={(text) => updateName(text)}
@@ -68,15 +66,15 @@ const EditProfile = () => {
           onChange={(text) => updateName(text)}
         />
         <TextInput
-          labelTag={'Número:'}
-          placeholder="Número"
+          labelTag={'Number:'}
+          placeholder="Number"
           value={number}
           onChange={(text) => updateName(text)}
         />
         <CustomButton
-          contain={'Guardar'}
+          contain={'Save'}
           onPress={() => {
-            storeData({name, email, number});
+            updateData({name, email, number});
             navigation.pop();
           }}
         />

@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import { StatusBar } from 'react-native';
+import {StatusBar} from 'react-native';
 import colors from '../config/colors';
 
 export const ThemeContext = React.createContext();
