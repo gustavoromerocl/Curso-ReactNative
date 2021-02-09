@@ -1,9 +1,10 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useContext, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import colors from '../../config/colors';
 import {ThemeContext} from '../../context/Theme';
 import CatImage from '../Commons/CatImage';
-import Heart from '../Commons/Heart';
 
 const styles = StyleSheet.create({
   container: {
@@ -39,12 +40,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const GridCard = ({url}) => {
+const GridCard = ({url, nav, index}) => {
   const [like, updateLike] = useState(false);
   const [lastPress, updateLastPress] = useState(0);
-
   const {
-    mainTheme: {backgroundColor, textColor},
+    mainTheme: {backgroundColor},
   } = useContext(ThemeContext);
 
   const onDoublePress = () => {
@@ -57,16 +57,19 @@ const GridCard = ({url}) => {
     updateLastPress(new Date().getTime());
   };
 
-  const toggleLike = () => {
-    updateLike(!like);
-  };
+  const navigation = useNavigation();
 
   return (
     <>
       <View style={[styles.container, {backgroundColor: backgroundColor}]}>
-        <View style={[styles.catImage, {backgroundColor: backgroundColor}]}>
+        <TouchableOpacity
+          style={[styles.catImage, {backgroundColor: backgroundColor}]}
+          onPress={() => {
+            console.log(nav, index);
+            navigation.navigate(nav, {index});
+          }}>
           <CatImage toggle={() => onDoublePress()} catUrl={url} />
-        </View>
+        </TouchableOpacity>
       </View>
     </>
   );

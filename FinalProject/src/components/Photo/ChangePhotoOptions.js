@@ -44,7 +44,6 @@ const ChangePhotoOptions = ({onPress, setImage, modal, title}) => {
       },
       (response) => {
         setImage(response.uri);
-        modal(false);
         navigation.navigate('Profile');
       },
     );
@@ -59,7 +58,6 @@ const ChangePhotoOptions = ({onPress, setImage, modal, title}) => {
       },
       (response) => {
         setImage(response.uri);
-        modal(false);
         navigation.navigate('Profile');
       },
     );
@@ -68,10 +66,18 @@ const ChangePhotoOptions = ({onPress, setImage, modal, title}) => {
     <View style={styles.container}>
       <View style={styles.contain}>
         <Text style={styles.title}>{title}</Text>
-        <TouchableOpacity onPress={takePhoto}>
+        <TouchableOpacity
+          onPress={() => {
+            takePhoto();
+            modal(false);
+          }}>
           <Text style={styles.text}> Usar la cámara </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={selectImage}>
+        <TouchableOpacity
+          onPress={() => {
+            selectImage();
+            modal(false);
+          }}>
           <Text style={styles.text}> Elegir de la galería </Text>
         </TouchableOpacity>
         <CloseButton onPress={onPress} />

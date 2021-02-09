@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const CatGrid = ({data}) => {
+const CatGrid = ({data, nav}) => {
   return (
     <>
       <View style={styles.flatListContainer}>
@@ -17,7 +17,9 @@ const CatGrid = ({data}) => {
           numColumns={3}
           data={data}
           keyExtractor={(item) => item.id}
-          renderItem={({item: {url, width}}) => <GridCard url={url} />}
+          renderItem={({item, index}) => {
+            return <GridCard url={item.url} nav={nav} index={index} />;
+          }}
         />
       </View>
     </>

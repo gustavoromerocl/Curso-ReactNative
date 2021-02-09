@@ -11,22 +11,15 @@ const styles = StyleSheet.create({
 });
 
 class Portfolio extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentData: [],
-    };
-  }
-
   render() {
     const {
-      mainTheme: {backgroundColor, textColor},
+      mainTheme: {backgroundColor},
       rollPhotos,
     } = this.props;
     //console.log('portfolio:', rollPhotos);
     return (
       <View style={[styles.container, {backgroundColor: backgroundColor}]}>
-        <CatGrid data={rollPhotos} />
+        <CatGrid data={rollPhotos} nav={'Portfolio List'} />
       </View>
     );
   }

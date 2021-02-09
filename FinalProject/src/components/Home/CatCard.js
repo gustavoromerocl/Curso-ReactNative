@@ -1,9 +1,11 @@
 import React, {useContext, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import colors from '../../config/colors';
 import {ThemeContext} from '../../context/Theme';
 import CatImage from '../Commons/CatImage';
 import Heart from '../Commons/Heart';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import Star from '../Commons/Star';
 
 const styles = StyleSheet.create({
   container: {
@@ -30,16 +32,26 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   heart: {
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.black,
     height: 80,
   },
+  likes: {
+    paddingLeft: 10,
+    fontSize: 20,
+    fontFamily: 'LondrinaSolid-Regular',
+  },
 });
 
 const CatCard = ({url}) => {
   const [like, updateLike] = useState(false);
+  const [save, updateSave] = useState(false);
   const [lastPress, updateLastPress] = useState(0);
+  const [counter, updateCounter] = useState(
+    Math.round(Math.random() * (1000000 - 1) + 1),
+  );
 
   const {
     mainTheme: {backgroundColor, textColor},
@@ -50,6 +62,7 @@ const CatCard = ({url}) => {
 
     if (delta < 200) {
       updateLike(!like);
+      counterLike();
     }
 
     updateLastPress(new Date().getTime());
@@ -57,6 +70,19 @@ const CatCard = ({url}) => {
 
   const toggleLike = () => {
     updateLike(!like);
+    counterLike();
+  };
+
+  const counterLike = () => {
+    if (!like) {
+      updateCounter(counter + 1);
+    } else {
+      updateCounter(counter - 1);
+    }
+  };
+
+  const toggleStar = () => {
+    updateSave(!save);
   };
 
   return (
@@ -66,7 +92,11 @@ const CatCard = ({url}) => {
           <CatImage toggle={() => onDoublePress()} catUrl={url} />
         </View>
         <View style={[styles.heart, {backgroundColor: backgroundColor}]}>
+          <Star star save={save} onPress={() => toggleStar()} />
           <Heart heart like={like} ratingPress={() => toggleLike()} />
+          <Text style={[styles.likes, {color: textColor}]}>
+            {counter} likes
+          </Text>
         </View>
       </View>
     </>

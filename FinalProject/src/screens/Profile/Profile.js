@@ -57,7 +57,6 @@ const styles = StyleSheet.create({
 const Profile = () => {
   const navigation = useNavigation();
   const {name, email, number, photo, backgroundImage} = useUserInformation();
-  console.log({backgroundImage});
   const {rollPhotos} = useApiInformation();
 
   const {
@@ -99,7 +98,9 @@ const Profile = () => {
         numColumns={3}
         data={rollPhotos}
         keyExtractor={(item) => item.id}
-        renderItem={({item: {url, width}}) => <GridCard url={url} />}
+        renderItem={({item, index}) => (
+          <GridCard url={item.url} nav={'Profile List'} index={index} />
+        )}
       />
     </View>
   );

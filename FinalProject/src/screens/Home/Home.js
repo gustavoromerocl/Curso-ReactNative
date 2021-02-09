@@ -22,30 +22,37 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentData: [],
-      modalActive: false,
+      portfolioImages: [],
     };
   }
 
+  favoriteImage = (id) => {
+    const {portfolioImages} = this.state;
+    const {images} = this.props;
+    const favorite = images.find((image) => image.id === id);
+    this.setState({portfolioImages: [...portfolioImages, favorite]});
+    console.log(portfolioImages);
+  };
+
+  selectCategory = (id) => {
+    const {categories, updateSelectedCategory} = this.props;
+    const filterCategory = categories.filter((category) => category.id === id);
+    updateSelectedCategory(filterCategory[0]);
+  };
+
   render() {
     const {
-      mainTheme: {backgroundColor, textColor, primaryColor},
+      mainTheme: {backgroundColor},
       categories,
-      updateSelectedCategory,
       images,
     } = this.props;
 
-    const selectCategory = (id) => {
-      const filterCategory = categories.filter(
-        (category) => category.id === id,
-      );
-      updateSelectedCategory(filterCategory[0]);
-    };
-
     return (
       <View style={[styles.container, {backgroundColor: backgroundColor}]}>
-        <HorizontalScroll data={categories} onPress={selectCategory} />
-        <CatList data={images} />
+        <HorizontalScroll data={categories} onPress={this.selectCategory} />
+        <View>
+          <CatList data={images} />
+        </View>
       </View>
     );
   }
