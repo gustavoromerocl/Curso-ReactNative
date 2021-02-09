@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const GridCard = ({url, nav, index}) => {
+const ProfileGridCard = ({url, nav, index}) => {
   const [like, updateLike] = useState(false);
   const [lastPress, updateLastPress] = useState(0);
   const {
@@ -75,4 +75,4 @@ const GridCard = ({url, nav, index}) => {
   );
 };
 
-export default GridCard;
+export default ProfileGridCard;

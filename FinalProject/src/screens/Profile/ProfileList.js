@@ -1,8 +1,10 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import CatList from '../../components/Home/CatList';
+import {FlatList} from 'react-native-gesture-handler';
+import CatCard from '../../components/Home/CatCard';
 import {useApiInformation} from '../../context/LoadApi';
 import {useTheme} from '../../context/Theme';
+import ProfileCard from '../../components/Profile/ProfileCard';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,7 +26,19 @@ const ProfileList = ({route}) => {
   console.log(index);
   return (
     <View style={[styles.container, {backgroundColor: backgroundColor}]}>
-      <CatList data={rollPhotos} index={index} />
+      <FlatList
+        data={rollPhotos}
+        keyExtractor={(item) => item.id}
+        renderItem={({item}) => (
+          <ProfileCard url={item.url} id={item.id} favorite={false} />
+        )}
+        initialScrollIndex={index}
+        getItemLayout={(data, index) => ({
+          length: 528,
+          offset: 528 * index,
+          index,
+        })}
+      />
     </View>
   );
 };

@@ -1,5 +1,6 @@
 import React, {useCallback, useContext, useEffect, useState} from 'react';
 import Axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export const ApiContext = React.createContext();
 
@@ -7,8 +8,49 @@ const LoadApi = ({children}) => {
   const [rollPhotos, updateRollPhotos] = useState(null);
   const [categories, updateCategories] = useState(null);
   const [selectedCategory, updateSelectedCategory] = useState({id: 2});
-  const [images, updateImages] = useState(1);
+  const [images, updateImages] = useState([]);
   const [paginationCount, updatePaginationCount] = useState(0);
+  const [portfolioImages, updatePortfolioImages] = useState([]);
+
+  const saveImageHome = (id) => {
+    const favorite = images.find((image) => image.id === id);
+    updatePortfolioImages([...portfolioImages, favorite]);
+    updateSaveImages(portfolioImages);
+    console.log({portfolioImages});
+  };
+
+  const saveImageProfile = (id) => {
+    const favorite = rollPhotos.find((image) => image.id === id);
+    updatePortfolioImages([...portfolioImages, favorite]);
+    updateSaveImages(portfolioImages);
+    console.log({portfolioImages});
+  };
+
+  const deleteImage = (id) => {
+    const filterArray = portfolioImages.filter((item) => item.id !== id);
+    updatePortfolioImages(filterArray);
+  };
+
+  const updateSaveImages = async (array) => {
+    try {
+      const jsonArray = JSON.stringify(array);
+      await AsyncStorage.setItem('portfolio', jsonArray);
+      console.log({jsonArray});
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getPortfolio = useCallback(async () => {
+    try {
+      const portfolioArray = await AsyncStorage.getItem('portfolio');
+      if (portfolioArray !== null) {
+        updatePortfolioImages(JSON.parse(portfolioArray));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   const fetchCat = useCallback(async () => {
     try {
@@ -73,7 +115,8 @@ const LoadApi = ({children}) => {
     fetchCat();
     getCategories();
     getImages();
-  }, [fetchCat, getCategories, getImages]);
+    getPortfolio();
+  }, [fetchCat, getCategories, getImages, getPortfolio]);
 
   return (
     <ApiContext.Provider
@@ -84,6 +127,10 @@ const LoadApi = ({children}) => {
         selectedCategory,
         images,
         updateSelectedCategory,
+        portfolioImages,
+        saveImageHome,
+        deleteImage,
+        saveImageProfile,
       }}>
       {children}
     </ApiContext.Provider>
@@ -99,6 +146,10 @@ type LApi = {
   selectedCategory: Array,
   images: Array,
   updateSelectedCategory: Function,
+  portfolioImages: Array,
+  saveImageHome: Function,
+  deleteImage: Function,
+  saveImageProfile: Function,
 };
 
 export const useApiInformation = (): LApi => {

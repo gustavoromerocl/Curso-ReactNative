@@ -7,9 +7,9 @@ import AddPhoto from '../../components/Photo/AddPhoto';
 import {useUserInformation} from '../../context/User';
 import {ThemeContext} from '../../context/Theme';
 import BackgroundAddPhoto from '../../components/Photo/BackgroundAddPhoto';
-import GridCard from '../../components/Portfolio/GridCard';
 import {useApiInformation} from '../../context/LoadApi';
 import {useNavigation} from '@react-navigation/native';
+import ProfileGridCard from '../../components/Profile/ProfileGridCard';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -99,7 +99,7 @@ const Profile = () => {
         data={rollPhotos}
         keyExtractor={(item) => item.id}
         renderItem={({item, index}) => (
-          <GridCard url={item.url} nav={'Profile List'} index={index} />
+          <ProfileGridCard url={item.url} nav={'Profile List'} index={index} />
         )}
       />
     </View>

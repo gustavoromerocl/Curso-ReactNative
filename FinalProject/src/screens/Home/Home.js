@@ -19,21 +19,6 @@ const styles = StyleSheet.create({
 });
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      portfolioImages: [],
-    };
-  }
-
-  favoriteImage = (id) => {
-    const {portfolioImages} = this.state;
-    const {images} = this.props;
-    const favorite = images.find((image) => image.id === id);
-    this.setState({portfolioImages: [...portfolioImages, favorite]});
-    console.log(portfolioImages);
-  };
-
   selectCategory = (id) => {
     const {categories, updateSelectedCategory} = this.props;
     const filterCategory = categories.filter((category) => category.id === id);

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {ThemeContext} from '../../context/Theme';
-import CatGrid from '../../components/Portfolio/CatGrid';
+import PortfolioGrid from '../../components/Portfolio/PortfolioGrid';
 import {ApiContext} from '../../context/LoadApi';
 
 const styles = StyleSheet.create({
@@ -14,12 +14,12 @@ class Portfolio extends Component {
   render() {
     const {
       mainTheme: {backgroundColor},
-      rollPhotos,
+      portfolioImages,
     } = this.props;
     //console.log('portfolio:', rollPhotos);
     return (
       <View style={[styles.container, {backgroundColor: backgroundColor}]}>
-        <CatGrid data={rollPhotos} nav={'Portfolio List'} />
+        <PortfolioGrid data={portfolioImages} nav={'Portfolio List'} />
       </View>
     );
   }
@@ -29,8 +29,8 @@ const PortfolioWrapper = () => (
   <ThemeContext.Consumer>
     {({mainTheme}) => (
       <ApiContext.Consumer>
-        {({rollPhotos}) => (
-          <Portfolio mainTheme={mainTheme} rollPhotos={rollPhotos} />
+        {({portfolioImages}) => (
+          <Portfolio mainTheme={mainTheme} portfolioImages={portfolioImages} />
         )}
       </ApiContext.Consumer>
     )}

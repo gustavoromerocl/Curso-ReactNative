@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const CatCard = ({url, id, favorite = false}) => {
+const ProfileCard = ({url, id, favorite = false}) => {
   const [like, updateLike] = useState(false);
   const [save, updateSave] = useState(favorite);
   const [lastPress, updateLastPress] = useState(0);
@@ -56,7 +56,7 @@ const CatCard = ({url, id, favorite = false}) => {
     mainTheme: {backgroundColor, textColor},
   } = useTheme();
 
-  const {saveImageHome, deleteImage} = useApiInformation();
+  const {saveImageProfile, deleteImage} = useApiInformation();
 
   const onDoublePress = () => {
     var delta = new Date().getTime() - lastPress;
@@ -85,7 +85,7 @@ const CatCard = ({url, id, favorite = false}) => {
   const toggleStar = () => {
     updateSave(!save);
     if (!save) {
-      saveImageHome(id);
+      saveImageProfile(id);
     } else {
       deleteImage(id);
     }
@@ -109,4 +109,4 @@ const CatCard = ({url, id, favorite = false}) => {
   );
 };
 
-export default CatCard;
+export default ProfileCard;
