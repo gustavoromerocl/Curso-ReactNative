@@ -16,14 +16,12 @@ const LoadApi = ({children}) => {
     const favorite = images.find((image) => image.id === id);
     updatePortfolioImages([...portfolioImages, favorite]);
     updateSaveImages(portfolioImages);
-    console.log({portfolioImages});
   };
 
   const saveImageProfile = (id) => {
     const favorite = rollPhotos.find((image) => image.id === id);
     updatePortfolioImages([...portfolioImages, favorite]);
     updateSaveImages(portfolioImages);
-    console.log({portfolioImages});
   };
 
   const deleteImage = (id) => {
@@ -35,7 +33,6 @@ const LoadApi = ({children}) => {
     try {
       const jsonArray = JSON.stringify(array);
       await AsyncStorage.setItem('portfolio', jsonArray);
-      console.log({jsonArray});
     } catch (e) {
       console.log(e);
     }
@@ -88,7 +85,6 @@ const LoadApi = ({children}) => {
 
   const getImages = useCallback(async () => {
     try {
-      console.log('id', selectedCategory.id);
       Axios.defaults.headers.common['x-api-key'] =
         '2c7e068b-6c10-4846-847c- a50e06b2baa7'; // Replace this with your API Key
 

@@ -98,7 +98,6 @@ const Login = ({loginIsValid, loginIn, loading}) => {
   //const insets = useSafeAreaInsets(); corrige el notch de algunos smartphone de aple
   const [user, updateUser] = useState('');
   const [password, updatePassword] = useState('');
-  //console.log('login: ', {loginIsValid});
   AntDesignIcon.loadFont();
 
   return (
@@ -146,7 +145,6 @@ const Login = ({loginIsValid, loginIn, loading}) => {
 };
 
 const mapStateToProps = (state) => ({
-  //console.log({state});
   loginIsValid: isLoginValidSelector(state),
   loading: loginLoadingSelector(state),
 });
