@@ -18,7 +18,6 @@ const UserHandler = ({children}) => {
         num: number,
       };
       const jsonUser = JSON.stringify(user);
-      console.log({jsonUser});
       await AsyncStorage.setItem('user', jsonUser);
     } catch (e) {
       console.log(e);

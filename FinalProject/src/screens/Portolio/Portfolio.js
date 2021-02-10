@@ -16,7 +16,6 @@ class Portfolio extends Component {
       mainTheme: {backgroundColor},
       portfolioImages,
     } = this.props;
-    //console.log('portfolio:', rollPhotos);
     return (
       <View style={[styles.container, {backgroundColor: backgroundColor}]}>
         <PortfolioGrid data={portfolioImages} nav={'Portfolio List'} />

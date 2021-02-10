@@ -52,9 +52,9 @@ const PortfolioList = ({route}) => {
           <CatCard url={item.url} id={item.id} favorite={true} />
         )}
         initialScrollIndex={index}
-        getItemLayout={(data, _index) => ({
+        getItemLayout={(data, index) => ({
           length: 528,
-          offset: 528 * _index,
+          offset: 528 * index,
           index,
         })}
         ListEmptyComponent={() => (

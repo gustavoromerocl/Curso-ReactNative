@@ -65,7 +65,6 @@ const ProfileGridCard = ({url, nav, index}) => {
         <TouchableOpacity
           style={[styles.catImage, {backgroundColor: backgroundColor}]}
           onPress={() => {
-            console.log(nav, index);
             navigation.navigate(nav, {index});
           }}>
           <CatImage toggle={() => onDoublePress()} catUrl={url} />

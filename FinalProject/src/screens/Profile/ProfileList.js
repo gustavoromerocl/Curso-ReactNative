@@ -44,9 +44,9 @@ const ProfileList = ({route}) => {
           <ProfileCard url={item.url} id={item.id} favorite={false} />
         )}
         initialScrollIndex={index}
-        getItemLayout={(data, _index) => ({
+        getItemLayout={(data, index) => ({
           length: 528,
-          offset: 528 * _index,
+          offset: 528 * index,
           index,
         })}
       />

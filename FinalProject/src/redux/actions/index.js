@@ -3,7 +3,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 /**LOGIN*/
 
 export const login = ({user, password}) => {
-  //console.log('login in: ', {user, password});
   return async (dispatch) => {
     dispatch({
       type: 'START_LOADING',
