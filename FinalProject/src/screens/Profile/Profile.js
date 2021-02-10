@@ -1,6 +1,6 @@
-import React, {useContext} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
+import React, {useContext, useEffect, useRef} from 'react';
+import {StyleSheet, Text, View, Animated} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../../config/colors';
 import AddPhoto from '../../components/Photo/AddPhoto';
@@ -55,6 +55,8 @@ const styles = StyleSheet.create({
 });
 
 const Profile = () => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
   const navigation = useNavigation();
   const {name, email, number, photo, backgroundImage} = useUserInformation();
   const {rollPhotos} = useApiInformation();
@@ -63,9 +65,18 @@ const Profile = () => {
     mainTheme: {backgroundColor, textColor, primaryColor},
   } = useContext(ThemeContext);
 
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 2000,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+
   return (
     <View style={[styles.container, {backgroundColor: backgroundColor}]}>
-      <FlatList
+      <Animated.FlatList
+        style={{opacity: fadeAnim}}
         ListHeaderComponent={
           <>
             <View style={styles.containerImage}>

@@ -1,6 +1,6 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
+import React, {useEffect, useRef} from 'react';
+import {StyleSheet, Text, View, Animated} from 'react-native';
+import {useTheme} from '../../context/Theme';
 import PortfolioGridCard from './PortfolioGridCard';
 
 const styles = StyleSheet.create({
@@ -18,10 +18,25 @@ const styles = StyleSheet.create({
 });
 
 const PortfolioGrid = ({data, nav}) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  const {
+    mainTheme: {textColor},
+  } = useTheme();
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 2000,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+
   return (
     <>
       <View style={styles.flatListContainer}>
-        <FlatList
+        <Animated.FlatList
+          style={{opacity: fadeAnim}}
           numColumns={3}
           data={data}
           keyExtractor={(item) => item.id}
@@ -37,7 +52,7 @@ const PortfolioGrid = ({data, nav}) => {
           }}
           ListEmptyComponent={() => (
             <View style={styles.containerText}>
-              <Text style={styles.text}>
+              <Text style={[styles.text, {color: textColor}]}>
                 You did not add images to the portfolio
               </Text>
             </View>

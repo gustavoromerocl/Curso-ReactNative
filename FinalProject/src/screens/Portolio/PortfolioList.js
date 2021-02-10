@@ -1,6 +1,5 @@
-import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
+import React, {useEffect, useRef} from 'react';
+import {View, StyleSheet, Text, Animated} from 'react-native';
 import CatCard from '../../components/Home/CatCard';
 import {useApiInformation} from '../../context/LoadApi';
 import {useTheme} from '../../context/Theme';
@@ -27,27 +26,42 @@ const styles = StyleSheet.create({
 });
 
 const PortfolioList = ({route}) => {
-  const {backgroundColor} = useTheme();
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  const {
+    mainTheme: {backgroundColor, textColor},
+  } = useTheme();
   const {portfolioImages} = useApiInformation();
   const {index} = route.params;
 
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 2000,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+
   return (
     <View style={[styles.container, {backgroundColor: backgroundColor}]}>
-      <FlatList
+      <Animated.FlatList
+        style={{opacity: fadeAnim}}
         data={portfolioImages}
         keyExtractor={(item) => item.id}
         renderItem={({item}) => (
           <CatCard url={item.url} id={item.id} favorite={true} />
         )}
         initialScrollIndex={index}
-        getItemLayout={(data, index) => ({
+        getItemLayout={(data, _index) => ({
           length: 528,
-          offset: 528 * index,
+          offset: 528 * _index,
           index,
         })}
         ListEmptyComponent={() => (
           <View style={styles.containerText}>
-            <Text style={styles.text}>Empty portfolio</Text>
+            <Text style={[styles.text, {color: textColor}]}>
+              Empty portfolio
+            </Text>
           </View>
         )}
       />

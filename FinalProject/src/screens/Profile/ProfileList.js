@@ -1,7 +1,5 @@
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
-import CatCard from '../../components/Home/CatCard';
+import React, {useEffect, useRef} from 'react';
+import {View, StyleSheet, Animated} from 'react-native';
 import {useApiInformation} from '../../context/LoadApi';
 import {useTheme} from '../../context/Theme';
 import ProfileCard from '../../components/Profile/ProfileCard';
@@ -20,22 +18,35 @@ const styles = StyleSheet.create({
 });
 
 const ProfileList = ({route}) => {
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
   const {rollPhotos} = useApiInformation();
-  const {backgroundColor} = useTheme();
+  const {
+    mainTheme: {backgroundColor},
+  } = useTheme();
   const {index} = route.params;
-  console.log(index);
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 2000,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+
   return (
     <View style={[styles.container, {backgroundColor: backgroundColor}]}>
-      <FlatList
+      <Animated.FlatList
+        style={{opacity: fadeAnim}}
         data={rollPhotos}
         keyExtractor={(item) => item.id}
         renderItem={({item}) => (
           <ProfileCard url={item.url} id={item.id} favorite={false} />
         )}
         initialScrollIndex={index}
-        getItemLayout={(data, index) => ({
+        getItemLayout={(data, _index) => ({
           length: 528,
-          offset: 528 * index,
+          offset: 528 * _index,
           index,
         })}
       />

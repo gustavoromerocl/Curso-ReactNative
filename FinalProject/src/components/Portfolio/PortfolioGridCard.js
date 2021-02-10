@@ -1,10 +1,10 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useContext, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {StyleSheet, View, Animated} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import colors from '../../config/colors';
-import { useApiInformation } from '../../context/LoadApi';
-import {ThemeContext} from '../../context/Theme';
+import {useApiInformation} from '../../context/LoadApi';
+import {useTheme} from '../../context/Theme';
 import CatImage from '../Commons/CatImage';
 import Star from '../Commons/Star';
 
@@ -47,13 +47,24 @@ const styles = StyleSheet.create({
 });
 
 const PortfolioGridCard = ({url, nav, index, id}) => {
+  const fadeAnim = useRef(new Animated.Value(1)).current;
+
   const [save, updateSave] = useState(true);
   const [like, updateLike] = useState(false);
   const [lastPress, updateLastPress] = useState(0);
   const {
     mainTheme: {backgroundColor},
-  } = useContext(ThemeContext);
+  } = useTheme();
   const {deleteImage} = useApiInformation();
+
+  const fadeOut = () => {
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 2000,
+      useNativeDriver: true,
+    }).start();
+  };
+
   const onDoublePress = () => {
     var delta = new Date().getTime() - lastPress;
 
@@ -68,14 +79,21 @@ const PortfolioGridCard = ({url, nav, index, id}) => {
 
   const toggleStar = () => {
     updateSave(!save);
-    if (save) {
-      deleteImage(id);
-    }
+    setTimeout(() => {
+      if (save) {
+        deleteImage(id);
+      }
+    }, 2000);
   };
 
   return (
     <>
-      <View style={[styles.container, {backgroundColor: backgroundColor}]}>
+      <Animated.View
+        style={[
+          styles.container,
+          {backgroundColor: backgroundColor},
+          {opacity: fadeAnim},
+        ]}>
         <TouchableOpacity
           style={[styles.catImage, {backgroundColor: backgroundColor}]}
           onPress={() => {
@@ -85,9 +103,16 @@ const PortfolioGridCard = ({url, nav, index, id}) => {
           <CatImage toggle={() => onDoublePress()} catUrl={url} />
         </TouchableOpacity>
         <View style={styles.star}>
-          <Star star save={save} onPress={() => toggleStar()} />
+          <Star
+            star
+            save={save}
+            onPress={() => {
+              fadeOut();
+              toggleStar();
+            }}
+          />
         </View>
-      </View>
+      </Animated.View>
     </>
   );
 };
