@@ -1,8 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, StyleSheet, TouchableHighlight, Image, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../../config/colors';
+import {ThemeContext} from '../../context/Theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,8 +11,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   circleContainer: {
-    width: 200,
-    height: 200,
+    width: 130,
+    height: 130,
     borderRadius: 100,
     backgroundColor: colors.white,
     justifyContent: 'center',
@@ -19,28 +20,37 @@ const styles = StyleSheet.create({
   },
   addPhotoContainer: {
     borderColor: colors.black,
-    borderWidth: 2,
+    borderWidth: 0.6,
     justifyContent: 'center',
     alignItems: 'center',
   },
   imageFrame: {
-    width: 180,
-    height: 180,
+    width: 120,
+    height: 120,
     borderRadius: 100,
   },
   textStyle: {
     paddingTop: 15,
-    color: colors.black,
+    fontFamily: 'LondrinaSolid-Light',
   },
 });
 
 const AddPhoto = ({uri = null}) => {
   const navigation = useNavigation();
 
+  const {
+    mainTheme: {backgroundColor, textColor},
+  } = useContext(ThemeContext);
+
   const ImagePhoto = !uri ? (
-    <View style={[styles.addPhotoContainer, styles.imageFrame]}>
-      <Icon name="image-plus" color={colors.black} size={30} />
-      <Text style={styles.textStyle}>Agregar Foto</Text>
+    <View
+      style={[
+        styles.addPhotoContainer,
+        styles.imageFrame,
+        {borderColor: textColor},
+      ]}>
+      <Icon name="image-plus" color={textColor} size={30} />
+      <Text style={[styles.textStyle, {color: textColor}]}>Add Photo</Text>
     </View>
   ) : (
     <Image style={styles.imageFrame} source={{uri}} />
@@ -51,7 +61,7 @@ const AddPhoto = ({uri = null}) => {
       <TouchableHighlight
         onPress={() => navigation.navigate('Camera')}
         underlayColor={colors.gray}
-        style={styles.circleContainer}>
+        style={[styles.circleContainer, {backgroundColor: backgroundColor}]}>
         {ImagePhoto}
       </TouchableHighlight>
     </View>

@@ -55,7 +55,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const CameraInterface = ({takePicture = () => {}, camera}) => {
+const CameraInterface = ({
+  takePicture = () => {},
+  camera,
+  selectImage = () => {},
+}) => {
   const navigation = useNavigation();
 
   return (
@@ -72,7 +76,9 @@ const CameraInterface = ({takePicture = () => {}, camera}) => {
           style={styles.captureBottonContainer}>
           <View style={styles.captureInnerButtonContainer} />
         </TouchableOpacity>
-        <Icon name="image-multiple-outline" color={colors.white} size={50} />
+        <TouchableOpacity onPress={selectImage}>
+          <Icon name="image-multiple-outline" color={colors.white} size={50} />
+        </TouchableOpacity>
       </View>
     </View>
   );

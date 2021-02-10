@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     backgroundColor: '#34495e',
+    borderRadius: 10,
   },
 });
 

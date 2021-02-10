@@ -7,22 +7,24 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StatusBar} from 'react-native';
 import RootNavigation from './routes/RootNavigation';
 import {Provider} from 'react-redux';
 import store from './redux/store';
 import UserHandler from './context/User';
+import Theme from './context/Theme';
+import LoadApi from './context/LoadApi';
 
 const App: () => React$Node = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <UserHandler>
-        <Provider store={store}>
-          <RootNavigation />
-        </Provider>
-      </UserHandler>
-    </>
+    <Provider store={store}>
+      <Theme>
+        <UserHandler>
+          <LoadApi>
+            <RootNavigation />
+          </LoadApi>
+        </UserHandler>
+      </Theme>
+    </Provider>
   );
 };
 
